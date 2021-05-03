@@ -26,7 +26,8 @@
     "prefer-template": "error",
     "radix": "error",
     "space-before-blocks": "error",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "extends": "eslint:recommended"
   },
   "overrides": [
     {
