@@ -6,7 +6,6 @@ import { WrapperLogin, WrapperRegister, Wrapper, Content, Button } from "./style
 
 const CheckIn = () => {
   const [login, setLogin] = React.useState(false);
-  console.log(login);
   return (
     <Content>
       <Button
