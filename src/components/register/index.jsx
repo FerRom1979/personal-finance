@@ -2,8 +2,9 @@ import React from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "./validation-schema";
 import axios from "axios";
+import { ButtonCustom } from "../index";
 
-import { Button, FormWrapper, InputWrapper, MessageError } from "./styles";
+import { FormWrapper, InputWrapper, MessageError } from "./styles";
 
 const Register = () => {
   const initialValues = {
@@ -89,7 +90,7 @@ const Register = () => {
       {formik.touched.password && formik.errors.password ? (
         <MessageError>{formik.errors.password}</MessageError>
       ) : null}
-      <Button type="onSubmit">Register</Button>
+      <ButtonCustom type={"onSubmit"} values={"Register"} />
     </FormWrapper>
   );
 };

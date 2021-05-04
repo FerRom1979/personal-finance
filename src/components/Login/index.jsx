@@ -2,8 +2,9 @@ import React from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "./validation-schema";
 import axios from "axios";
+import { ButtonCustom } from "../../components";
 
-import { Button, FormWrapper, InputWrapper, MessageError } from "./styles";
+import { FormWrapper, InputWrapper, MessageError } from "./styles";
 
 const Login = () => {
   const initialValues = {
@@ -54,7 +55,7 @@ const Login = () => {
       {formik.touched.password && formik.errors.password ? (
         <MessageError>{formik.errors.password}</MessageError>
       ) : null}
-      <Button type="onSubmit">Login</Button>
+      <ButtonCustom type={"onSubmit"} values={"Login"} />
     </FormWrapper>
   );
 };
