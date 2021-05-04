@@ -22,11 +22,15 @@ import {
   ImgStore,
   WrapperImgStore,
 } from "./styles";
-import Card from "../card";
+import Card from "../../components/card";
+import Header from "../../components/header";
 
 const Welcome = () => {
   return (
     <Content>
+      <div style={{ position: "sticky", top: 0 }}>
+        <Header />
+      </div>
       <div>
         <Title>Take control of your finances</Title>
         <Description>

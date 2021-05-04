@@ -8,7 +8,10 @@ const Header = () => {
   return (
     <Content>
       <div>
-        <MenuResponsive />
+        <div style={{ maxWidth: "300px" }}>
+          <MenuResponsive />
+        </div>
+
         <Logo>LOGO</Logo>
       </div>
 

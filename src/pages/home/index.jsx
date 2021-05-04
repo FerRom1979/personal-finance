@@ -1,24 +1,21 @@
 import React from "react";
-import Header from "../../components/header";
 import Login from "../../components/Login";
 import Register from "../../components/register";
-import Welcome from "../../components/welcome";
+import Welcome from "../welcome";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CheckIn from "../checkin";
+import MyAccount from "../myAccount";
 
 const Home = () => {
   return (
     <div>
       <Router>
-        <div style={{ marinTop: "30px", position: "sticky", top: 0 }}>
-          <Header />
-        </div>
-
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/checkIn" component={CheckIn} />
+          <Route exact path="/myAccount" component={MyAccount} />
         </Switch>
       </Router>
     </div>
