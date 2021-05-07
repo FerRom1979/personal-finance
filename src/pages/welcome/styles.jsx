@@ -7,6 +7,7 @@ const { tablet } = mediaQueries;
 export const Content = styled.div`
   text-align: center;
 `;
+
 export const Title = styled.h3`
   padding: 0 20px;
   font-size: 40px;
