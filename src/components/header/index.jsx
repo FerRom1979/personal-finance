@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <Content>
       <div>
-        <div style={{ maxWidth: "300px" }}>
+        <div style={{ height: "600px", position: "absolute" }}>
           <MenuResponsive />
         </div>
 

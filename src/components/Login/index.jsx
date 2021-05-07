@@ -3,10 +3,15 @@ import { useFormik } from "formik";
 import { validationSchema } from "./validation-schema";
 import axios from "axios";
 import { ButtonCustom } from "../../components";
+import { useDispatch } from "react-redux";
+import { addUserAction } from "../../redux/user/actions";
+import { useHistory } from "react-router-dom";
 
 import { FormWrapper, InputWrapper, MessageError } from "./styles";
 
 const Login = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const initialValues = {
     email: "",
     password: "",
@@ -14,14 +19,18 @@ const Login = () => {
   const onSubmit = async (values) => {
     try {
       const res = await values;
-      await axios({
+      const info = await axios({
         method: "post",
-        url: `${process.env.REACT_SERVER_URI}/users/login`,
+        url: `${process.env.REACT_APP_SERVER_URI}/users/login`,
         data: {
           email: res.email,
           password: res.password,
         },
       });
+      dispatch(addUserAction(info.data.token));
+      if (info) {
+        history.push("/");
+      }
     } catch (error) {
       console.log(error);
     }
