@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import axios from "axios";
-
+import { getCountries, languages } from "../../constants";
+import CustomSelect from "../../components/reactSlect";
 import { ButtonCustom, InputCustom } from "../../components";
 
 import {
@@ -28,21 +28,16 @@ import {
 const MyAccount = () => {
   const user = useSelector((state) => state.userData.user);
   const [openList, setOpenList] = useState(false);
-  const [countries, setCountries] = useState();
+  const [countries, setCountries] = useState("");
 
   useEffect(() => {
-    axios
-      .get("https://restcountries.eu/rest/v2/all")
-      .then(async (response) => {
-        console.log(response.data);
-        const res = await response.data;
-        setCountries(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const get = async () => {
+      const data = await getCountries();
+      setCountries(data);
+    };
+    get();
   }, []);
-  console.log(countries || "");
+
   return (
     <div>
       <WrapperHeader>
@@ -87,23 +82,12 @@ const MyAccount = () => {
       <WrapperCardInfo>
         <WrapperCardLanguage>
           <WrapperSelect>
-            <span>Language</span>
-            <Select id="language" name="countries">
-              {countries &&
-                countries.map((country, index) => (
-                  <option key={index} value={country.id}>
-                    {country.name}
-                  </option>
-                ))}
-            </Select>
+            <span>Currency</span>
+            <CustomSelect options={countries} defaultValue={countries[0]} label={"single select"} />
           </WrapperSelect>
           <WrapperSelect>
-            <span>Currency</span>
-            <Select id="currency">
-              <option value="english">Argentina</option>
-              <option value="spanish">Brazil</option>
-              <option value="portuguese">England</option>
-            </Select>
+            <span>Language</span>
+            <CustomSelect options={languages} defaultValue={languages[0]} />
           </WrapperSelect>
         </WrapperCardLanguage>
 
@@ -112,7 +96,7 @@ const MyAccount = () => {
       <WrapperCardInfo>
         <Avatar width={"120px"} height={"120px"} src={AvatarMen} alt="avatar" />
         <h4>
-          {user ? user.name : user} {user ? user.lastName : Avatar}
+          {user ? user.name : "username"} {user ? user.lastName : "last name"}
         </h4>
         <ButtonCustom values={"CHANGE PASSWORD"} />
       </WrapperCardInfo>
