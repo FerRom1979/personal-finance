@@ -70,18 +70,15 @@ export const WrapperCardLanguage = styled.div`
   padding-bottom: 10px;
   margin: 20px auto;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 `;
-export const Select = styled.select`
-  border: none;
-  padding-top: 5px;
-  border-bottom: 1px solid black;
-  cursor: pointer;
-  background-color: transparent;
-`;
 export const WrapperSelect = styled.div`
+  padding-bottom: 10px;
+  margin-top: 10px;
   text-align: center;
   font-weight: 400;
+  width: 100%;
   color: rgba(0, 0, 0, 0.54);
 `;

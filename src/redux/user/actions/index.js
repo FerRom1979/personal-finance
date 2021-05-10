@@ -7,7 +7,6 @@ import axios from "axios";
 });
  */
 const token = localStorage.getItem("token");
-console.log(token);
 export const addUserAction = (token) => async (dispatch) => {
   try {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_URI}/users/me`, {
