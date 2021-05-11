@@ -6,13 +6,15 @@ import axios from "axios";
   payload: user,
 });
  */
-const token = localStorage.getItem("token");
-export const addUserAction = (token) => async (dispatch) => {
+const jwk = localStorage.getItem("token");
+sessionStorage.setItem("token", jwk);
+const tokenItem = sessionStorage.getItem("token");
+export const addUserAction = (tokenItem) => async (dispatch) => {
   try {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_URI}/users/me`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: tokenItem,
       },
     });
     dispatch({
