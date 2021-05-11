@@ -16,6 +16,7 @@ const MenuResponsive = () => {
       <a id="contact" className="menu-item" href="/contact">
         Contact
       </a>
+      <Link to="/dashboard">Dashboard</Link>
       <Link to="/myAccount">My Account</Link>
       {/* <a onClick={this.showSettings} className="menu-item--small" href="">
         Settings
