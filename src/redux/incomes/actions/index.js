@@ -1,24 +1,23 @@
-import { GET_DATA_USER } from "./types";
+import { GET_INCOMES } from "./types";
 import axios from "axios";
 
-const jwk = localStorage.getItem("token");
-sessionStorage.setItem("token", jwk);
 const tokenItem = sessionStorage.getItem("token");
 const id = sessionStorage.getItem("id");
-export const addUserAction = (tokenItem, id) => async (dispatch) => {
+
+export const getIncomes = () => async (dispatch) => {
   try {
-    const res = await axios.get(`${process.env.REACT_APP_SERVER_URI}/users/me`, {
+    const res = await axios.get(`${process.env.REACT_APP_SERVER_URI}/incomes`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: tokenItem,
         _id: id,
       },
     });
+    console.log(res.data);
     dispatch({
-      type: GET_DATA_USER,
+      type: GET_INCOMES,
       payload: res.data,
     });
-    sessionStorage.setItem("id", res.data._id);
     console.log(res);
   } catch (err) {
     console.log(err);

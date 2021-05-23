@@ -9,7 +9,7 @@ import Dashboard from "../dashboard";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Router>
         <Switch>
           <Route exact path="/" component={Welcome} />
@@ -20,7 +20,7 @@ const Home = () => {
           <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
-    </div>
+    </>
   );
 };
 

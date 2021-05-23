@@ -15,8 +15,10 @@ import {
   WrapperMessage,
   WrapperAddButton,
 } from "./styles";
+import CreateIncome from "../createIncome";
 
 const CardIncome = () => {
+  const [openModal, setOpenModal] = useState(false);
   const [date, setDate] = useState(0);
   const [dataType, setDataType] = useState("day");
   const [messageDefault, setMessageDefault] = useState("");
@@ -37,55 +39,59 @@ const CardIncome = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataType]);
-
+  const modal = () => {
+    setOpenModal(!openModal);
+  };
   return (
-    <Content>
-      <WrapperItems>
-        <li>
-          <Item role="button" onClick={() => setDataType("day")} tabIndex="0">
-            Day
+    <div>
+      <Content>
+        <WrapperItems>
+          <li>
+            <Item role="button" onClick={() => setDataType("day")} tabIndex="0">
+              Day
+            </Item>
+          </li>
+          <li>
+            <Item role="button" onClick={() => setDataType("week")} tabIndex="0">
+              Week
+            </Item>
+          </li>
+          <li>
+            <Item role="button" onClick={() => setDataType("month")} tabIndex="0">
+              Month
+            </Item>
+          </li>
+          <Item>
+            <Item role="button" onClick={() => setDataType("year")} tabIndex="0">
+              Year
+            </Item>
           </Item>
-        </li>
-        <li>
-          <Item role="button" onClick={() => setDataType("week")} tabIndex="0">
-            Week
-          </Item>
-        </li>
-        <li>
-          <Item role="button" onClick={() => setDataType("month")} tabIndex="0">
-            Month
-          </Item>
-        </li>
-        <Item>
-          <Item role="button" onClick={() => setDataType("year")} tabIndex="0">
-            Year
-          </Item>
-        </Item>
-        <li>
-          <Item role="button" onClick={() => setDataType("period")} tabIndex="0">
-            Period
-          </Item>
-        </li>
-      </WrapperItems>
-
-      <WrapperDate>
-        <ButtonDiscountDay onClick={() => setDate(date + 1)}>
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </ButtonDiscountDay>
-        <span>{day.format("dddd D MMMM")}</span>
-        {day < today ? (
-          <ButtonAddDay onClick={() => setDate(date - 1)}>
-            <FontAwesomeIcon icon={faChevronRight} />
-          </ButtonAddDay>
-        ) : null}
-      </WrapperDate>
-      <WrapperMessage>
-        <MessageDefault>{messageDefault}</MessageDefault>
-      </WrapperMessage>
-      <WrapperAddButton>
-        <ButtonCustom type={"button"} values={"+"} />
-      </WrapperAddButton>
-    </Content>
+          <li>
+            <Item role="button" onClick={() => setDataType("period")} tabIndex="0">
+              Period
+            </Item>
+          </li>
+        </WrapperItems>
+        <WrapperDate>
+          <ButtonDiscountDay onClick={() => setDate(date + 1)}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </ButtonDiscountDay>
+          <span>{day.format("dddd D MMMM")}</span>
+          {day < today ? (
+            <ButtonAddDay onClick={() => setDate(date - 1)}>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </ButtonAddDay>
+          ) : null}
+        </WrapperDate>
+        <WrapperMessage>
+          <MessageDefault>{messageDefault}</MessageDefault>
+        </WrapperMessage>
+        <WrapperAddButton>
+          <ButtonCustom type={"button"} onClick={modal} values={"+"} />
+        </WrapperAddButton>
+      </Content>
+      {openModal && <CreateIncome />}
+    </div>
   );
 };
 

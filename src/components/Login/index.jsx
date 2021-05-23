@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "./validation-schema";
 import axios from "axios";
@@ -27,6 +27,8 @@ const Login = () => {
           password: res.password,
         },
       });
+
+      sessionStorage.setItem("token", info.data.token);
       dispatch(addUserAction(info.data.token));
       if (info) {
         history.push("/");
