@@ -27,7 +27,7 @@ ReactSelect.propTypes = {
   defaultValues: PropTypes.array,
 };
 ReactSelect.defaultProps = {
-  options: "",
+  options: [],
   defaultValues: [],
 };
 export default ReactSelect;

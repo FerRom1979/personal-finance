@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import img from "../../images/mobile-finance-two.png";
 import imgOne from "../../images/mobile-finance.png";
 import appStore from "../../images/appStoreB.png";
@@ -24,8 +24,12 @@ import {
 } from "./styles";
 import Card from "../../components/card";
 import Header from "../../components/header";
+import Loaders from "../../components/loader";
+import Message from "../../components/message";
 
 const Welcome = () => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   return (
     <Content>
       <div style={{ position: "sticky", top: 0 }}>
@@ -50,7 +54,8 @@ const Welcome = () => {
           efficient and easy way
         </Description>
       </div>
-
+      {loading && <Loaders />}
+      {error && <Message msg={"Error the server"} bgColor="#dc3545" />}
       <WrapperCard>
         <Card
           icon={faUniversity}
