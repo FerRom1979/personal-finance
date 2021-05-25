@@ -3,7 +3,7 @@ import axios from "axios";
 
 const tokenItem = sessionStorage.getItem("token");
 const id = sessionStorage.getItem("id");
-
+console.log(tokenItem);
 export const getIncomes = () => async (dispatch) => {
   try {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_URI}/incomes`, {

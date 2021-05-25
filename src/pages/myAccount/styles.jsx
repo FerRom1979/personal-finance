@@ -5,7 +5,7 @@ export const Logo = styled.h2`
 `;
 export const Avatar = styled.img`
   width: ${(props) => props.width};
-  height: ${(props) => props.heigth};
+  height: ${(props) => props.height};
 `;
 export const WrapperHeader = styled.div`
   display: flex;

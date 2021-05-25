@@ -3,6 +3,7 @@ import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { ButtonCustom } from "../index";
+import { useSelector } from "react-redux";
 
 import {
   WrapperItems,
@@ -18,6 +19,8 @@ import {
 import CreateIncome from "../createIncome";
 
 const CardIncome = () => {
+  const incomes = useSelector((state) => state.incomesData.incomes);
+  const [dataIncome, setDataIncome] = useState();
   const [openModal, setOpenModal] = useState(false);
   const [date, setDate] = useState(0);
   const [dataType, setDataType] = useState("day");
@@ -27,13 +30,17 @@ const CardIncome = () => {
   useEffect(() => {
     switch (dataType) {
       case "day":
-        return setMessageDefault("today there were no expenses");
+        setDataIncome(incomes.filter((el) => moment(el.createdAt.slice(0, 19)) == today.format()));
+        return dataIncome ? dataIncome : setMessageDefault("today there were no expenses");
       case "week":
-        return setMessageDefault("to week there were no expenses");
+        setDataIncome(incomes.filter((el) => el.createdAt.slice(0, 19) < today.format()));
+        return dataIncome ? dataIncome : setMessageDefault("to week there were no expenses");
       case "month":
-        return setMessageDefault("to month there were no expenses");
+        setDataIncome(incomes.filter((el) => el.createdAt.slice(0, 19) < today.format()));
+        return dataIncome ? dataIncome : setMessageDefault("to month there were no expenses");
       case "year":
-        return setMessageDefault("to year there were no expenses");
+        setDataIncome(incomes.filter((el) => el.createdAt.slice(0, 19) < today.format()));
+        return dataIncome ? dataIncome : setMessageDefault("to year there were no expenses");
       default:
         return setMessageDefault("to period there were no expenses");
     }
@@ -42,6 +49,11 @@ const CardIncome = () => {
   const modal = () => {
     setOpenModal(!openModal);
   };
+  useEffect(() => {
+    setDataIncome(incomes.filter((el) => el.createdAt.slice(0, 19) < day));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  console.log(incomes);
   return (
     <div>
       <Content>
@@ -73,19 +85,44 @@ const CardIncome = () => {
           </li>
         </WrapperItems>
         <WrapperDate>
-          <ButtonDiscountDay onClick={() => setDate(date + 1)}>
+          <ButtonDiscountDay
+            onClick={() => {
+              setDate(date + 1);
+              return setDataIncome(
+                incomes.filter((el) => el.createdAt.slice(0, 19) < day.format())
+              );
+            }}
+          >
             <FontAwesomeIcon icon={faChevronLeft} />
           </ButtonDiscountDay>
           <span>{day.format("dddd D MMMM")}</span>
           {day < today ? (
-            <ButtonAddDay onClick={() => setDate(date - 1)}>
+            <ButtonAddDay
+              onClick={() => {
+                setDate(date - 1);
+                return setDataIncome(incomes.filter((el) => el.createdAt.slice(0, 19) < day));
+              }}
+            >
               <FontAwesomeIcon icon={faChevronRight} />
             </ButtonAddDay>
           ) : null}
         </WrapperDate>
-        <WrapperMessage>
-          <MessageDefault>{messageDefault}</MessageDefault>
-        </WrapperMessage>
+        {incomes && incomes?.length !== 0 ? (
+          incomes.map((income) => (
+            <div key={income.id}>
+              <p>Category: {income.category}</p>
+              <p>Description: {income.description}</p>
+              <p>Income: {income.totalIncome}</p>
+              <p>Type: {income.typeOfIncome}</p>
+              <p>{income.IncomePermanent ? "Income Permanent" : "occasional"}</p>
+            </div>
+          ))
+        ) : (
+          <WrapperMessage>
+            <MessageDefault>{messageDefault}</MessageDefault>
+          </WrapperMessage>
+        )}
+
         <WrapperAddButton>
           <ButtonCustom type={"button"} onClick={modal} values={"+"} />
         </WrapperAddButton>

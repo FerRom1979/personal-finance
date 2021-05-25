@@ -6,10 +6,16 @@ import { ButtonCustom } from "../../components";
 import { useDispatch } from "react-redux";
 import { addUserAction } from "../../redux/user/actions";
 import { useHistory } from "react-router-dom";
-
+import { colors } from "../../constants";
 import { FormWrapper, InputWrapper, MessageError } from "./styles";
+// import { useAxios } from "../../hooks/useAxios";
 
 const Login = () => {
+  // const { data, error, loading } = useAxios("https://restcountries.eu/rest/v2/allll");
+
+  console.log(data);
+  console.log(error);
+  console.log(loading);
   const history = useHistory();
   const dispatch = useDispatch();
   const initialValues = {
@@ -66,7 +72,7 @@ const Login = () => {
       {formik.touched.password && formik.errors.password ? (
         <MessageError>{formik.errors.password}</MessageError>
       ) : null}
-      <ButtonCustom type={"onSubmit"} values={"Login"} />
+      <ButtonCustom type={"onSubmit"} values={"Login"} background={colors.BLUE} />
     </FormWrapper>
   );
 };

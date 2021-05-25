@@ -2,6 +2,7 @@ import React from "react";
 import { Login } from "../../components";
 import Register from "../../components/register";
 import Saving from "../../images/saving-way.jpg";
+import { color } from "../../constants";
 
 import {
   WrapperLogin,
