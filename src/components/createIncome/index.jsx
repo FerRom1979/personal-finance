@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { ButtonCustom } from "../../components";
 import { validationSchema } from "./validation-schema";
@@ -10,8 +10,13 @@ import { getIncomes } from "../../redux/incomes/actions";
 
 const CreateIncome = () => {
   const dispatch = useDispatch();
-  const incomes = useSelector((state) => state.incomesData.incomes);
-  console.log(incomes);
+  useEffect(() => {
+    const getIncomesData = () => {
+      dispatch(getIncomes());
+    };
+    getIncomesData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const initialValues = {
     category: "",
     description: "",
@@ -21,20 +26,27 @@ const CreateIncome = () => {
   };
 
   const onSubmit = async (values) => {
+    console.log(values);
     try {
       const res = await values;
       const info = await axios({
         method: "post",
         url: `${process.env.REACT_APP_SERVER_URI}/incomes`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: sessionStorage.getItem("token"),
+          _id: sessionStorage.getItem("id"),
+        },
         data: {
-          email: res.email,
-          password: res.password,
+          category: res.category,
+          description: res.description,
+          typeOfIncome: res.typeOfIncome,
+          totalIncome: res.totalIncome,
+          IncomePermanent: res.IncomePermanent,
         },
       });
-      dispatch(addUserAction(info.data.token));
-      if (info) {
-        history.push("/");
-      }
+
+      console.log(info);
     } catch (error) {
       console.log(error);
     }
@@ -107,12 +119,7 @@ const CreateIncome = () => {
       {formik.touched.IncomePermanent && formik.errors.IncomePermanent ? (
         <MessageError>{formik.errors.IncomePermanent}</MessageError>
       ) : null}
-      <ButtonCustom
-        type={"onSubmit"}
-        values={"Add"}
-        onClick={() => dispatch(getIncomes())}
-        minWidth={"300px"}
-      />
+      <ButtonCustom type={"onSubmit"} values={"Add"} minWidth={"300px"} />
     </FormWrapper>
   );
 };
