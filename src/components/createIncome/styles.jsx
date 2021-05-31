@@ -25,6 +25,7 @@ export const InputWrapper = styled.input`
 `;
 export const SpanCheck = styled.span`
   display: inline-block;
+  text-align: right;
   max-width: 300px;
   border: none;
   color: ${(props) => (props.color ? props.color : "gray")};
@@ -35,6 +36,9 @@ export const SpanCheck = styled.span`
   background-color: transparent;
 `;
 export const WrapperCheck = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
   border-bottom: 1px solid black;
   margin-bottom: 20px;
   :hover {

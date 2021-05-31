@@ -2,7 +2,6 @@ import React from "react";
 import { Login } from "../../components";
 import Register from "../../components/register";
 import Saving from "../../images/saving-way.jpg";
-import { color } from "../../constants";
 
 import {
   WrapperLogin,
@@ -21,7 +20,9 @@ const CheckIn = () => {
       <WrapperSaving>
         <ImgSaving src={Saving} alt="save" />
       </WrapperSaving>
+
       <div>
+        <h1>{!login ? "Login" : "Register please"}</h1>
         <Button
           type="button"
           onClick={() => setLogin(!login)}

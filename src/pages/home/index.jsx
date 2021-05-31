@@ -1,26 +1,100 @@
-import React from "react";
-import Login from "../../components/Login";
-import Register from "../../components/register";
-import Welcome from "../welcome";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import CheckIn from "../checkin";
-import MyAccount from "../myAccount";
-import Dashboard from "../dashboard";
+import React, { useState } from "react";
+import img from "../../images/mobile-finance-two.png";
+import imgOne from "../../images/mobile-finance.png";
+import appStore from "../../images/appStoreB.png";
+import googlePlay from "../../images/googlePlayA.png";
+
+import {
+  faUniversity,
+  faCreditCard,
+  faChartLine,
+  faBell,
+  faBullseye,
+  faFile,
+} from "@fortawesome/free-solid-svg-icons";
+
+import {
+  Content,
+  Title,
+  Description,
+  ImgWrapper,
+  WrapperCard,
+  ImgStore,
+  WrapperImgStore,
+} from "./styles";
+import Card from "../../components/card";
+import Header from "../../components/header";
+import Loaders from "../../components/loader";
+import Message from "../../components/message";
 
 const Home = () => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   return (
-    <>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Welcome} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/checkIn" component={CheckIn} />
-          <Route exact path="/myAccount" component={MyAccount} />
-          <Route exact path="/dashboard" component={Dashboard} />
-        </Switch>
-      </Router>
-    </>
+    <Content>
+      <div style={{ position: "sticky", top: 0 }}>
+        <Header />
+      </div>
+      <div>
+        <Title>Take control of your finances</Title>
+        <Description>
+          Taking care of your money can be easy.
+          <br /> With Personal Finance, organize and plan your financial life in one place.
+        </Description>
+        <WrapperImgStore>
+          <ImgStore src={appStore} alt="cel" />
+          <ImgStore src={googlePlay} alt="cel" />
+        </WrapperImgStore>
+        <ImgWrapper src={img} alt="wrapper-img" />
+      </div>
+      <div>
+        <Title>A starting point for you to control your money</Title>
+        <Description>
+          Personal Finance allows you to have personal and family financial control in a complete,
+          efficient and easy way
+        </Description>
+      </div>
+      {loading && <Loaders />}
+      {error && <Message msg={"Error the server"} bgColor="#dc3545" />}
+      <WrapperCard>
+        <Card
+          icon={faUniversity}
+          title={"connect your accounts"}
+          description={"With Personal Finance you know where your money is"}
+        />
+        <Card
+          icon={faCreditCard}
+          title={"Manage your cards"}
+          description={"Attach your invoices and do not leave surprise payments"}
+        />
+      </WrapperCard>
+      <WrapperCard>
+        <Card
+          icon={faChartLine}
+          title={"Plan your finances"}
+          description={"keep your expenses under control through charts"}
+        />
+        <Card
+          icon={faBell}
+          title={"Receive alert messages"}
+          description={"We help you understand the right path"}
+        />
+      </WrapperCard>
+      <WrapperCard>
+        <Card
+          icon={faBullseye}
+          title={"Mark your goals"}
+          description={"Create goals to raise money and achieve your dreams"}
+        />
+        <Card
+          icon={faFile}
+          title={"monthly records"}
+          description={"Get a monthly analysis of your financial life"}
+        />
+      </WrapperCard>
+
+      <ImgWrapper src={imgOne} alt="wrapper-img" />
+    </Content>
   );
 };
 

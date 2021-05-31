@@ -1,22 +1,13 @@
 import React, { useEffect } from "react";
-import { useFormik } from "formik";
+import { Field, useFormik } from "formik";
 import { ButtonCustom } from "../../components";
 import { validationSchema } from "./validation-schema";
-import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { colors } from "../../constants";
 
 import { InputWrapper, FormWrapper, MessageError, SpanCheck, WrapperCheck } from "./styles";
-import { getIncomes } from "../../redux/incomes/actions";
 
 const CreateIncome = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const getIncomesData = () => {
-      dispatch(getIncomes());
-    };
-    getIncomesData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   const initialValues = {
     category: "",
     description: "",
@@ -38,15 +29,13 @@ const CreateIncome = () => {
           _id: sessionStorage.getItem("id"),
         },
         data: {
-          category: res.category,
+          category: res.category ? "incomes" : "expenses",
           description: res.description,
           typeOfIncome: res.typeOfIncome,
           totalIncome: res.totalIncome,
           IncomePermanent: res.IncomePermanent,
         },
       });
-
-      console.log(info);
     } catch (error) {
       console.log(error);
     }
@@ -59,13 +48,23 @@ const CreateIncome = () => {
   });
   return (
     <FormWrapper onSubmit={formik.handleSubmit}>
-      <InputWrapper
-        type="text"
-        name="category"
-        id="category"
-        placeholder="Category"
-        {...formik.getFieldProps("category")}
-      />
+      <WrapperCheck>
+        <SpanCheck style={{ paddingRight: "30px" }}>Category</SpanCheck>
+        <label htmlFor="category">
+          <input
+            style={{ display: "none" }}
+            type="checkbox"
+            name="category"
+            id="category"
+            value={true ? "incomes" : "expenses"}
+            {...formik.getFieldProps("category")}
+          />
+          <SpanCheck color={formik.values.category ? "green" : "red"}>
+            {formik.values.category ? "incomes" : "expenses"}
+          </SpanCheck>
+        </label>
+      </WrapperCheck>
+
       {formik.touched.category && formik.errors.category ? (
         <MessageError>{formik.errors.category}</MessageError>
       ) : null}
@@ -119,7 +118,7 @@ const CreateIncome = () => {
       {formik.touched.IncomePermanent && formik.errors.IncomePermanent ? (
         <MessageError>{formik.errors.IncomePermanent}</MessageError>
       ) : null}
-      <ButtonCustom type={"onSubmit"} values={"Add"} minWidth={"300px"} />
+      <ButtonCustom type={"onSubmit"} values={"Add"} minWidth={"300px"} background={colors.BLUE} />
     </FormWrapper>
   );
 };
