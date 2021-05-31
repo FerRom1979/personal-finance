@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "./validation-schema";
 import axios from "axios";
@@ -8,14 +8,10 @@ import { addUserAction } from "../../redux/user/actions";
 import { useHistory } from "react-router-dom";
 import { colors } from "../../constants";
 import { FormWrapper, InputWrapper, MessageError } from "./styles";
-// import { useAxios } from "../../hooks/useAxios";
+import Message from "../message";
 
 const Login = () => {
-  // const { data, error, loading } = useAxios("https://restcountries.eu/rest/v2/allll");
-
-  console.log(data);
-  console.log(error);
-  console.log(loading);
+  const [serverError, setServerError] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const initialValues = {
@@ -23,6 +19,7 @@ const Login = () => {
     password: "",
   };
   const onSubmit = async (values) => {
+    setServerError(false);
     try {
       const res = await values;
       const info = await axios({
@@ -36,11 +33,9 @@ const Login = () => {
 
       sessionStorage.setItem("token", info.data.token);
       dispatch(addUserAction(info.data.token));
-      if (info) {
-        history.push("/");
-      }
+      if (info) history.push("/home");
     } catch (error) {
-      console.log(error);
+      if (error) setServerError(true);
     }
     formik.resetForm();
   };
@@ -72,6 +67,7 @@ const Login = () => {
       {formik.touched.password && formik.errors.password ? (
         <MessageError>{formik.errors.password}</MessageError>
       ) : null}
+      {serverError && <Message msg={"Wrong email or password"} color={"red"} />}
       <ButtonCustom type={"onSubmit"} values={"Login"} background={colors.BLUE} />
     </FormWrapper>
   );

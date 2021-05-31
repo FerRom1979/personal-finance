@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Message = ({ msg, bgColor }) => {
+const Message = ({ msg, color }) => {
   let styles = {
     padding: "rem",
     marginBottom: "1rem",
     textAlign: "center",
-    color: "#fff",
+    color: color || "",
     fontWeight: "bold",
-    backgroundColor: bgColor || "",
+    // backgroundColor: bgColor || "",
   };
   return (
     <div style={styles}>
@@ -18,7 +18,7 @@ const Message = ({ msg, bgColor }) => {
 };
 Message.propTypes = {
   msg: PropTypes.string,
-  bgColor: PropTypes.string,
+  color: PropTypes.string,
 };
 Message.defaultProps = {
   options: "",

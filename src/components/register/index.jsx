@@ -1,25 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { validationSchema } from "./validation-schema";
 import axios from "axios";
 import { ButtonCustom } from "../index";
+import { useHistory } from "react-router-dom";
+import { colors, initialValues } from "../../constants";
 
 import { FormWrapper, InputWrapper, MessageError } from "./styles";
+import Message from "../message";
 
 const Register = () => {
-  const initialValues = {
-    name: "",
-    lastName: "",
-    email: "",
-    age: "",
-    password: "",
-  };
+  const [serverError, setServerError] = useState(false);
+  const history = useHistory();
+
   const onSubmit = async (values) => {
+    setServerError(false);
     try {
       const res = await values;
-      await axios({
+      const data = await axios({
         method: "post",
-        url: `${process.env.REACT_SERVER_URI}/users`,
+        url: `${process.env.REACT_APP_SERVER_URI}/users`,
         data: {
           name: res.name,
           email: res.email,
@@ -28,8 +28,9 @@ const Register = () => {
           password: res.password,
         },
       });
+      if (data.request.status === 201) history.push("/login");
     } catch (error) {
-      console.log(error);
+      if (error) setServerError(true);
     }
     formik.resetForm();
   };
@@ -90,7 +91,9 @@ const Register = () => {
       {formik.touched.password && formik.errors.password ? (
         <MessageError>{formik.errors.password}</MessageError>
       ) : null}
-      <ButtonCustom type={"onSubmit"} values={"Register"} />
+
+      {serverError && <Message msg={"used mail please enter another"} color={"red"} />}
+      <ButtonCustom type={"onSubmit"} values={"Register"} background={colors.BLUE} />
     </FormWrapper>
   );
 };

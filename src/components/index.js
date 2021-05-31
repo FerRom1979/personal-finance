@@ -1,5 +1,5 @@
 import Card from "./card/index";
-import Welcome from "../pages/welcome/index";
+import Welcome from "../pages/home/index";
 import Login from "./Login";
 import ButtonCustom from "./buttonCustom";
 import InputCustom from "./inputCustom";

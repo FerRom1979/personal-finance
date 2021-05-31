@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { CardIncome, MenuResponsive } from "../../components";
+import { separatedCommas } from "../../constants";
+import { getIncomes } from "../../redux/incomes/actions";
 
-import { WrapperHeader, WrapperMenu, WrapperTotal, WrapperSubTitle } from "./styles";
+import { WrapperHeader, WrapperMenu, WrapperTotal, WrapperSubTitle, SubTitle } from "./styles";
 
-const index = () => {
+const Index = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getIncomesData = () => {
+      dispatch(getIncomes());
+    };
+    getIncomesData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  let total = 0;
+  const incomes = useSelector((state) => state.incomesData.incomes);
+  incomes?.map((income) => (total += income.totalIncome));
+
   return (
     <div>
       <WrapperHeader>
@@ -11,13 +27,15 @@ const index = () => {
           <MenuResponsive />
         </WrapperMenu>
         <WrapperTotal>
-          <span>total:</span>
-          <span>100,00$</span>
+          <SubTitle>total:</SubTitle>
+          <SubTitle color={total >= 0 ? "green" : "red"}>
+            {total && total < 0 ? -separatedCommas(total) : ` ${separatedCommas(total)}`}
+          </SubTitle>
         </WrapperTotal>
       </WrapperHeader>
       <WrapperSubTitle>
-        <h4>INCOME</h4>
-        <h4>EXPENSES</h4>
+        <SubTitle color={"green"}>INCOME</SubTitle>
+        <SubTitle color={"red"}>EXPENSES</SubTitle>
       </WrapperSubTitle>
       <div>
         <CardIncome />
@@ -26,4 +44,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

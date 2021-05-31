@@ -1,12 +1,12 @@
 import React from "react";
-import Home from "./pages/home";
+import ManagementRoute from "./pages/managementRoute";
 import { GlobalStyle } from "./styles-global";
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Home />
+      <ManagementRoute />
     </div>
   );
 }

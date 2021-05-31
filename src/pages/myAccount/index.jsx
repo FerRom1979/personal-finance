@@ -59,7 +59,9 @@ const MyAccount = () => {
           <Item>OVERVIEW</Item>
         </ItemList>
         <ItemList>
-          <Item>DASHBOARD</Item>
+          <Link to="/dashboard" style={{ textDecoration: "none", color: "black" }}>
+            <Item>DASHBOARD</Item>
+          </Link>
         </ItemList>
         <ItemList>
           <Item>SETTING</Item>
@@ -68,7 +70,7 @@ const MyAccount = () => {
           <Item>SUBSCRIPTION</Item>
         </ItemList>
         <ItemList>
-          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+          <Link to="/home" style={{ textDecoration: "none", color: "black" }}>
             <Item>HOME</Item>
           </Link>
         </ItemList>

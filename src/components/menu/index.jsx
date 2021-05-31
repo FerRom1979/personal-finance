@@ -7,7 +7,7 @@ import "./styles.css";
 const MenuResponsive = () => {
   return (
     <Menu>
-      <a id="home" className="menu-item" href="/">
+      <a id="home" className="menu-item" href="/home">
         Home
       </a>
       <a id="about" className="menu-item" href="/about">
