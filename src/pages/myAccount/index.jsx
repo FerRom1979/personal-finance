@@ -5,7 +5,8 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCountries, languages } from "../../constants";
-import CustomSelect from "../../components/reactSlect";
+import CustomSelect from "../../components/reactSelect";
+import { colors } from "../../constants";
 import { ButtonCustom, InputCustom } from "../../components";
 
 import {
@@ -39,7 +40,7 @@ const MyAccount = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <WrapperHeader>
         <Logo>LOGO</Logo>
         <WrapperAvatar>
@@ -79,7 +80,7 @@ const MyAccount = () => {
         <h4>Update info</h4>
         <InputCustom type={"text"} placeholder={user.name} />
         <InputCustom type={"email"} placeholder={user.email} />
-        <ButtonCustom values={"UPDATE YOUR INFORMATION"} />
+        <ButtonCustom values={"UPDATE YOUR INFORMATION"} background={colors.BLUE} />
       </WrapperCardInfo>
       <WrapperCardInfo>
         <WrapperCardLanguage>
@@ -93,16 +94,16 @@ const MyAccount = () => {
           </WrapperSelect>
         </WrapperCardLanguage>
 
-        <ButtonCustom values={"save"} />
+        <ButtonCustom values={"save"} background={colors.BLUE} />
       </WrapperCardInfo>
       <WrapperCardInfo>
         <Avatar width={"120px"} height={"120px"} src={AvatarMen} alt="avatar" />
         <h4>
           {user ? user.name : "username"} {user ? user.lastName : "last name"}
         </h4>
-        <ButtonCustom values={"CHANGE PASSWORD"} />
+        <ButtonCustom values={"CHANGE PASSWORD"} background={colors.BLUE} />
       </WrapperCardInfo>
-    </div>
+    </>
   );
 };
 

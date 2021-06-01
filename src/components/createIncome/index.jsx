@@ -1,23 +1,14 @@
 import React, { useEffect } from "react";
-import { Field, useFormik } from "formik";
+import { useFormik } from "formik";
 import { ButtonCustom } from "../../components";
 import { validationSchema } from "./validation-schema";
 import axios from "axios";
-import { colors } from "../../constants";
+import { colors, initialValuesIncomes } from "../../constants";
 
 import { InputWrapper, FormWrapper, MessageError, SpanCheck, WrapperCheck } from "./styles";
 
 const CreateIncome = () => {
-  const initialValues = {
-    category: "",
-    description: "",
-    typeOfIncome: "",
-    totalIncome: "",
-    IncomePermanent: "",
-  };
-
   const onSubmit = async (values) => {
-    console.log(values);
     try {
       const res = await values;
       const info = await axios({
@@ -42,7 +33,7 @@ const CreateIncome = () => {
     formik.resetForm();
   };
   const formik = useFormik({
-    initialValues,
+    initialValues: initialValuesIncomes,
     validationSchema,
     onSubmit,
   });

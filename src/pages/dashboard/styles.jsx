@@ -10,7 +10,7 @@ export const WrapperMenu = styled.div`
 export const WrapperTotal = styled.div`
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 `;
 export const WrapperSubTitle = styled.div`
@@ -22,6 +22,6 @@ export const WrapperSubTitle = styled.div`
 export const SubTitle = styled.span`
   display: inline-block;
   color: ${(props) => (props.color ? props.color : "")};
-  margin-top: 5px;
+  cursor: ${(props) => (props.cursor ? props.cursor : "")};
   font-size: 20px;
 `;
