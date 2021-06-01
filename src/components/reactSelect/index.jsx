@@ -23,11 +23,10 @@ const ReactSelect = ({ options, defaultValues }) => {
   );
 };
 ReactSelect.propTypes = {
-  options: PropTypes.array,
+  options: PropTypes.func,
   defaultValues: PropTypes.array,
 };
 ReactSelect.defaultProps = {
-  options: [],
   defaultValues: [],
 };
 export default ReactSelect;

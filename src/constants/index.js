@@ -4,6 +4,8 @@ import { getColor } from "./get-colors";
 import { colors } from "./colors";
 import { separatedCommas } from "./separated-commas";
 import { initialValues } from "./initial-values-register";
+import { getTotal } from "./get-total";
+import { initialValuesIncomes } from "./initial-values-incomes";
 
 export { getCountries };
 export { languages };
@@ -11,3 +13,5 @@ export { getColor };
 export { colors };
 export { separatedCommas };
 export { initialValues };
+export { getTotal };
+export { initialValuesIncomes };

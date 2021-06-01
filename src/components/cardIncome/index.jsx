@@ -5,6 +5,7 @@ import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons
 import { ButtonCustom } from "../index";
 import { useSelector } from "react-redux";
 import { colors } from "../../constants";
+import PropTypes from "prop-types";
 
 import {
   WrapperItems,
@@ -16,10 +17,11 @@ import {
   Content,
   WrapperMessage,
   WrapperAddButton,
+  WrapperCard,
 } from "./styles";
 import CreateIncome from "../createIncome";
 
-const CardIncome = () => {
+const CardIncome = ({ typeData }) => {
   const incomes = useSelector((state) => state.incomesData.incomes);
   const [dataIncome, setDataIncome] = useState();
   const [openModal, setOpenModal] = useState(false);
@@ -30,10 +32,8 @@ const CardIncome = () => {
   const day = moment().subtract(date, dataType);
   const d = incomes.filter((el) => {
     if (moment(el.createdAt.slice(0, 19)) >= today.format()) return el;
-    console.log(el);
   });
-  console.log(d);
-  console.log(moment("2021-05-23T02:48:47"));
+
   useEffect(() => {
     switch (dataType) {
       case "day":
@@ -60,12 +60,10 @@ const CardIncome = () => {
     setDataIncome(incomes.filter((el) => el.createdAt.slice(0, 19) < day));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(incomes);
-  console.log(today.format());
-  console.log(dataIncome);
-  console.log(dataType);
+  const incomeData = incomes.filter((income) => income.category === typeData);
+
   return (
-    <div>
+    <>
       <Content>
         <WrapperItems>
           <li>
@@ -119,16 +117,15 @@ const CardIncome = () => {
             </ButtonAddDay>
           ) : null}
         </WrapperDate>
-        {dataIncome && dataIncome?.length !== 0 ? (
-          dataIncome.map((income) => (
-            <div key={income.id}>
+        {incomeData && incomeData?.length !== 0 ? (
+          incomeData.map((income) => (
+            <WrapperCard key={income.id} bgColor={typeData === "incomes" ? "#6feb50" : "red"}>
               <p>Category: {income.category}</p>
               <p>Description: {income.description}</p>
               <p>Income: {income.totalIncome}</p>
               <p>Type: {income.typeOfIncome}</p>
               <p>{income.IncomePermanent ? "Income Permanent" : "occasional"}</p>
-              <hr />
-            </div>
+            </WrapperCard>
           ))
         ) : (
           <WrapperMessage>
@@ -141,8 +138,15 @@ const CardIncome = () => {
         </WrapperAddButton>
       </Content>
       {openModal && <CreateIncome />}
-    </div>
+    </>
   );
+};
+CardIncome.propTypes = {
+  typeData: PropTypes.string,
+  placeholder: PropTypes.string,
+};
+CardIncome.defaultProps = {
+  typeData: "",
 };
 
 export default CardIncome;

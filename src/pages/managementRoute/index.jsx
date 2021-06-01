@@ -7,6 +7,7 @@ import MyAccount from "../myAccount";
 import Dashboard from "../dashboard";
 import Welcome from "../welcome";
 import Home from "../home";
+import Upload from "../../components/upload";
 
 const ManagementRoute = () => {
   return (
@@ -20,6 +21,7 @@ const ManagementRoute = () => {
           <Route exact path="/checkIn" component={CheckIn} />
           <Route exact path="/myAccount" component={MyAccount} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Upload exact path="/upload" component={Upload} />
         </Switch>
       </Router>
     </>

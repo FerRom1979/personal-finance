@@ -54,3 +54,12 @@ export const WrapperAddButton = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
+export const WrapperCard = styled.div`
+  border: 2px solid green;
+  margin-bottom: 10px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 20%;
+  background-color: ${(props) => props.bgColor};
+  color: white;
+`;
