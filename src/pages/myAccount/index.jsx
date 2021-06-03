@@ -38,7 +38,6 @@ const MyAccount = () => {
     };
     get();
   }, []);
-
   return (
     <>
       <WrapperHeader>

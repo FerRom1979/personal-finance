@@ -3,6 +3,10 @@ import img from "../../images/mobile-finance-two.png";
 import imgOne from "../../images/mobile-finance.png";
 import appStore from "../../images/appStoreB.png";
 import googlePlay from "../../images/googlePlayA.png";
+import Card from "../../components/card";
+import Header from "../../components/header";
+import Loaders from "../../components/loader";
+import Message from "../../components/message";
 
 import {
   faUniversity,
@@ -22,17 +26,14 @@ import {
   ImgStore,
   WrapperImgStore,
 } from "./styles";
-import Card from "../../components/card";
-import Header from "../../components/header";
-import Loaders from "../../components/loader";
-import Message from "../../components/message";
 
 const Home = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
   return (
     <Content>
-      <div style={{ position: "sticky", top: 0 }}>
+      <div s>
         <Header />
       </div>
       <div>

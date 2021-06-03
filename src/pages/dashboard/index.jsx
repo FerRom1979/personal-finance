@@ -8,7 +8,7 @@ import { WrapperHeader, WrapperMenu, WrapperTotal, WrapperSubTitle, SubTitle } f
 
 const Index = () => {
   const incomes = useSelector((state) => state.incomesData.incomes);
-  const [typeData, setTypeData] = useState("");
+  const [typeData, setTypeData] = useState("incomes");
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -17,9 +17,10 @@ const Index = () => {
     };
     getIncomesData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [typeData]);
 
   const total = getTotal(incomes);
+
   return (
     <div>
       <WrapperHeader>

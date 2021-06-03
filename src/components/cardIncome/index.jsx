@@ -5,6 +5,7 @@ import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons
 import { ButtonCustom } from "../index";
 import { useSelector } from "react-redux";
 import { colors } from "../../constants";
+import { axiosHttp } from "../../helpers/axiosHttp";
 import PropTypes from "prop-types";
 
 import {
@@ -61,6 +62,15 @@ const CardIncome = ({ typeData }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const incomeData = incomes.filter((income) => income.category === typeData);
+
+  const deleteIncome = async (id) => {
+    const api = axiosHttp();
+    try {
+      const res = await api.del(`${process.env.REACT_APP_SERVER_URI}/incomes/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -125,6 +135,7 @@ const CardIncome = ({ typeData }) => {
               <p>Income: {income.totalIncome}</p>
               <p>Type: {income.typeOfIncome}</p>
               <p>{income.IncomePermanent ? "Income Permanent" : "occasional"}</p>
+              <button onClick={() => deleteIncome(income._id)}>-</button>
             </WrapperCard>
           ))
         ) : (
