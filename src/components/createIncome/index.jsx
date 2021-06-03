@@ -2,23 +2,19 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { ButtonCustom } from "../../components";
 import { validationSchema } from "./validation-schema";
-import axios from "axios";
+//import axios from "axios";
 import { colors, initialValuesIncomes } from "../../constants";
+import { axiosHttp } from "../../helpers/axiosHttp";
 
 import { InputWrapper, FormWrapper, MessageError, SpanCheck, WrapperCheck } from "./styles";
 
 const CreateIncome = () => {
   const onSubmit = async (values) => {
-    try {
+    const createIncomes = async () => {
+      const api = axiosHttp();
+      const url = `${process.env.REACT_APP_SERVER_URI}/incomes`;
       const res = await values;
-      const info = await axios({
-        method: "post",
-        url: `${process.env.REACT_APP_SERVER_URI}/incomes`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: sessionStorage.getItem("token"),
-          _id: sessionStorage.getItem("id"),
-        },
+      const options = {
         data: {
           category: res.category ? "incomes" : "expenses",
           description: res.description,
@@ -26,10 +22,14 @@ const CreateIncome = () => {
           totalIncome: res.totalIncome,
           IncomePermanent: res.IncomePermanent,
         },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+      };
+      try {
+        await api.post(url, options);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    createIncomes();
     formik.resetForm();
   };
   const formik = useFormik({
