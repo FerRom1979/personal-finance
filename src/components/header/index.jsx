@@ -2,15 +2,15 @@ import React from "react";
 import MenuResponsive from "../menu";
 import { Link } from "react-router-dom";
 
-import { Content, Title, Logo, WrapperRegister, StarApp } from "./styles";
+import { Content, Title, Logo, WrapperRegister, StarApp, WrapperMenuResponsive } from "./styles";
 
 const Header = () => {
   return (
     <Content>
       <div>
-        <div style={{ height: "600px", position: "absolute" }}>
+        <WrapperMenuResponsive>
           <MenuResponsive />
-        </div>
+        </WrapperMenuResponsive>
 
         <Logo>LOGO</Logo>
       </div>

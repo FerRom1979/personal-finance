@@ -31,3 +31,7 @@ export const StarApp = styled.span`
   color: #ffffff;
   text-decoration: none;
 `;
+export const WrapperMenuResponsive = styled.div`
+  height: 600px;
+  position: absolute;
+`;

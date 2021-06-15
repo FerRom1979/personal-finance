@@ -1,40 +1,67 @@
 import styled from "styled-components";
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  width: 940px;
+  height: 660px;
+  background-color: #ffffff;
+  margin: 30px auto;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+export const WrapperTitle = styled.div`
+  width: 860px;
+  height: 50px;
+  margin: auto;
+  padding: 19px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+`;
+
+export const Title = styled.span`
+  width: 193px;
+  height: 47px;
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 47px;
+`;
+
 export const FormWrapper = styled.form`
-  margin-top: 40px;
+  margin-top: 10px;
+  width: 660px auto;
+  height: 264px;
+  margin-left: 40px;
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
 `;
+
+export const TitleInput = styled.h1`
+  font-family: Work Sans;
+  margin: 0;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 47px;
+  color: rgba(0, 0, 0, 0.25);
+`;
+
 export const InputWrapper = styled.input`
-  max-width: 300px;
-  margin-bottom: 20px;
+  width: 660px;
   border: none;
-  padding: 10px;
-  font-size: 18px;
+  text-align: center;
+  font-size: 30px;
   background: transparent;
   background-color: transparent;
-  border-bottom: 1px solid black;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.25);
   :hover {
     border-bottom: 3px solid black;
   }
 `;
-export const Button = styled.button`
-  border-radius: 50px;
-  padding: 8px 22px;
-  min-width: 210px;
-  background-color: #2962ff;
-  font-size: 18px;
-  color: #ffffff;
-  cursor: pointer;
-  margin-top: 10px;
-  cursor: pointer;
-  :hover {
-    background-color: #184ee4;
-  }
-`;
+
 export const MessageError = styled.span`
   color: red;
   font-size: 16px;
