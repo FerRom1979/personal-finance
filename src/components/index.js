@@ -5,6 +5,7 @@ import ButtonCustom from "./buttonCustom";
 import InputCustom from "./inputCustom";
 import CardIncome from "./cardIncome";
 import MenuResponsive from "./menu";
+import Tablet from "./tablet";
 
 export { Card };
 export { Welcome };
@@ -13,3 +14,4 @@ export { ButtonCustom };
 export { InputCustom };
 export { CardIncome };
 export { MenuResponsive };
+export { Tablet };

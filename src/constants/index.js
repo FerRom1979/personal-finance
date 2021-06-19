@@ -7,6 +7,8 @@ import { initialValues } from "./initial-values-register";
 import { getTotal } from "./get-total";
 import { initialValuesIncomes } from "./initial-values-incomes";
 
+import { incomesData } from "./mockup";
+
 export { getCountries };
 export { languages };
 export { getColor };
@@ -15,3 +17,5 @@ export { separatedCommas };
 export { initialValues };
 export { getTotal };
 export { initialValuesIncomes };
+
+export { incomesData };

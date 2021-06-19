@@ -5,9 +5,9 @@ import axios from "axios";
 import { ButtonCustom } from "../index";
 import { useHistory } from "react-router-dom";
 import { colors, initialValues } from "../../constants";
+import Message from "../message";
 
 import { FormWrapper, InputWrapper, MessageError } from "./styles";
-import Message from "../message";
 
 const Register = () => {
   const [serverError, setServerError] = useState(false);
