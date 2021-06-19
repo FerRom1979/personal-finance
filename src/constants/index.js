@@ -6,6 +6,7 @@ import { separatedCommas } from "./separated-commas";
 import { initialValues } from "./initial-values-register";
 import { getTotal } from "./get-total";
 import { initialValuesIncomes } from "./initial-values-incomes";
+import { initialValuesLogin } from "./initial-values-login";
 
 import { incomesData } from "./mockup";
 
@@ -17,5 +18,4 @@ export { separatedCommas };
 export { initialValues };
 export { getTotal };
 export { initialValuesIncomes };
-
-export { incomesData };
+export { initialValuesLogin };

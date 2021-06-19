@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { ButtonCustom } from "../../components";
 import { validationSchema } from "./validation-schema";
-//import axios from "axios";
 import { colors, initialValuesIncomes } from "../../constants";
 import { axiosHttp } from "../../helpers/axiosHttp";
 
