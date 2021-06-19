@@ -4,17 +4,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
-import RenderSnackBar from "./components/upload/snackbar";
-import SimpleBackdrop from "./components/upload/backdrop";
+//import RenderSnackBar from "./components/upload/snackbar";
+//import SimpleBackdrop from "./components/upload/backdrop";
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <RenderSnackBar>
-        <SimpleBackdrop>
-          <App />
-        </SimpleBackdrop>
-      </RenderSnackBar>
+      <App />
     </React.StrictMode>
   </Provider>,
 

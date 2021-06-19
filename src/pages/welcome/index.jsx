@@ -7,7 +7,7 @@ const Welcome = () => {
   const history = useHistory();
 
   setTimeout(() => {
-    history.push("/checkIn");
+    history.push("/login");
   }, 2000);
   return (
     <Content>
