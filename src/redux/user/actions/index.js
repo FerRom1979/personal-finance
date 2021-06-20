@@ -19,7 +19,6 @@ export const addUserAction = (tokenItem, id) => async (dispatch) => {
       payload: res.data,
     });
     sessionStorage.setItem("id", res.data._id);
-    console.log(res);
   } catch (err) {
     console.log(err);
   }

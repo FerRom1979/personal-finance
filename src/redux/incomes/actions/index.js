@@ -16,7 +16,6 @@ export const getIncomes = () => async (dispatch) => {
       type: GET_INCOMES,
       payload: res.data,
     });
-    console.log(res);
   } catch (err) {
     console.log(err);
   }

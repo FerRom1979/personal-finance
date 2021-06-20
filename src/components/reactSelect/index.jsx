@@ -5,7 +5,7 @@ import makeAnimated from "react-select/animated";
 
 import customStyles from "./custom-style";
 
-const ReactSelect = ({ options, defaultValues }) => {
+const ReactSelect = ({ options, defaultValues, label }) => {
   const animatedComponents = makeAnimated();
   return (
     <>
@@ -18,6 +18,7 @@ const ReactSelect = ({ options, defaultValues }) => {
         isMulti={false}
         className="basic-single"
         name="color"
+        placeholder={label}
       />
     </>
   );
@@ -25,6 +26,7 @@ const ReactSelect = ({ options, defaultValues }) => {
 ReactSelect.propTypes = {
   options: PropTypes.func,
   defaultValues: PropTypes.array,
+  label: PropTypes.string,
 };
 ReactSelect.defaultProps = {
   defaultValues: [],

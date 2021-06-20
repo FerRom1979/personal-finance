@@ -25,3 +25,9 @@ export const SubTitle = styled.span`
   cursor: ${(props) => (props.cursor ? props.cursor : "")};
   font-size: 20px;
 `;
+
+export const WrapperData = styled.div`
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-evenly;
+`;

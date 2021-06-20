@@ -18,7 +18,7 @@ const Header = () => {
       <Title>Personal Finance</Title>
 
       <WrapperRegister>
-        <Link to="/checkIn" style={{ textDecoration: "none" }}>
+        <Link to="/Login" style={{ textDecoration: "none" }}>
           <StarApp>Start App</StarApp>
         </Link>
       </WrapperRegister>

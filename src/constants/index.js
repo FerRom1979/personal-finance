@@ -7,6 +7,9 @@ import { initialValues } from "./initial-values-register";
 import { getTotal } from "./get-total";
 import { initialValuesIncomes } from "./initial-values-incomes";
 import { initialValuesLogin } from "./initial-values-login";
+import { getTotalMonth } from "./get-month-data";
+import { getTotalYear } from "./get-total-year";
+import { incomesData } from "./mockup";
 
 export { getCountries };
 export { languages };
@@ -17,3 +20,5 @@ export { initialValues };
 export { getTotal };
 export { initialValuesIncomes };
 export { initialValuesLogin };
+export { getTotalMonth };
+export { getTotalYear };

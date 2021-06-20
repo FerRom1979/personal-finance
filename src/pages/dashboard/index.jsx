@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { CardIncome, MenuResponsive } from "../../components";
-import { separatedCommas, getTotal } from "../../constants";
+import { CardIncome, MenuResponsive, Tablet } from "../../components";
+import { separatedCommas, getTotal, getTotalMonth, getTotalYear } from "../../constants";
 import { getIncomes } from "../../redux/incomes/actions";
 
-import { WrapperHeader, WrapperMenu, WrapperTotal, WrapperSubTitle, SubTitle } from "./styles";
+import {
+  WrapperHeader,
+  WrapperMenu,
+  WrapperTotal,
+  WrapperSubTitle,
+  SubTitle,
+  WrapperData,
+} from "./styles";
 
 const Index = () => {
   const incomes = useSelector((state) => state.incomesData.incomes);
   const [typeData, setTypeData] = useState("incomes");
-
   const dispatch = useDispatch();
+  const total = getTotal(incomes);
   useEffect(() => {
     const getIncomesData = async () => {
       dispatch(getIncomes());
@@ -19,18 +26,38 @@ const Index = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typeData]);
 
-  const total = getTotal(incomes);
-
   return (
     <div>
       <WrapperHeader>
         <WrapperMenu>
           <MenuResponsive />
         </WrapperMenu>
+        <WrapperData>
+          <Tablet
+            totalIncomes={getTotal(incomes).dataDay.totalIncomesDay}
+            totalExpenses={getTotal(incomes).dataDay.totalExpensesDay}
+            total={getTotal(incomes).dataDay.totalDay}
+            title={"Daily summary"}
+          />
+          <Tablet
+            totalIncomes={getTotalMonth(incomes).totalIncomesMonth}
+            totalExpenses={getTotalMonth(incomes).totalExpensesMonth}
+            total={getTotalMonth(incomes).totalMonth}
+            title={"Month summary"}
+          />
+          <Tablet
+            totalIncomes={getTotalYear(incomes).totalIncomesYear}
+            totalExpenses={getTotalYear(incomes).totalExpensesYear}
+            total={getTotalYear(incomes).totalYear}
+            title={"Year summary"}
+          />
+        </WrapperData>
         <WrapperTotal>
           <SubTitle>total:</SubTitle>
-          <SubTitle color={total >= 0 ? "green" : "red"}>
-            {total && total < 0 ? ` ${separatedCommas(total)}$` : ` ${separatedCommas(total)}$`}
+          <SubTitle color={total.total >= 0 ? "green" : "red"}>
+            {total && total.total < 0
+              ? ` ${separatedCommas(total.total)}$`
+              : ` ${separatedCommas(total.total)}$`}
           </SubTitle>
         </WrapperTotal>
       </WrapperHeader>
