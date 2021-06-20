@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CardIncome, MenuResponsive, Tablet } from "../../components";
-import { separatedCommas, getTotal } from "../../constants";
+import { separatedCommas, getTotal, getTotalMonth, getTotalYear } from "../../constants";
 import { getIncomes } from "../../redux/incomes/actions";
 
-import { WrapperHeader, WrapperMenu, WrapperTotal, WrapperSubTitle, SubTitle } from "./styles";
+import {
+  WrapperHeader,
+  WrapperMenu,
+  WrapperTotal,
+  WrapperSubTitle,
+  SubTitle,
+  WrapperData,
+} from "./styles";
 
 const Index = () => {
   const incomes = useSelector((state) => state.incomesData.incomes);
   const [typeData, setTypeData] = useState("incomes");
-  const day = new Date();
-  const day2 = new Date();
-  const day3 = new Date("2021-06-03T01:47:12.977Z");
   const dispatch = useDispatch();
+  const total = getTotal(incomes);
   useEffect(() => {
     const getIncomesData = async () => {
       dispatch(getIncomes());
@@ -20,22 +25,33 @@ const Index = () => {
     getIncomesData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typeData]);
-  const dayData = incomes.filter((income) => income.createAt === day);
-  console.log(day3.getTime() === day.getTime());
-  console.log(day.getTime() === day2.getTime());
-  console.log(
-    incomes?.filter(
-      (income) => new Date(`${income.updatedAt}`.slice(0, 19)).getTime() === new Date().getTime()
-    )
-  );
-  const total = getTotal(incomes);
+
   return (
     <div>
       <WrapperHeader>
         <WrapperMenu>
           <MenuResponsive />
         </WrapperMenu>
-        <Tablet totalIncomes={getTotal(incomes)} />
+        <WrapperData>
+          <Tablet
+            totalIncomes={getTotal(incomes).dataDay.totalIncomesDay}
+            totalExpenses={getTotal(incomes).dataDay.totalExpensesDay}
+            total={getTotal(incomes).dataDay.totalDay}
+            title={"Daily summary"}
+          />
+          <Tablet
+            totalIncomes={getTotalMonth(incomes).totalIncomesMonth}
+            totalExpenses={getTotalMonth(incomes).totalExpensesMonth}
+            total={getTotalMonth(incomes).totalMonth}
+            title={"Month summary"}
+          />
+          <Tablet
+            totalIncomes={getTotalYear(incomes).totalIncomesYear}
+            totalExpenses={getTotalYear(incomes).totalExpensesYear}
+            total={getTotalYear(incomes).totalYear}
+            title={"Year summary"}
+          />
+        </WrapperData>
         <WrapperTotal>
           <SubTitle>total:</SubTitle>
           <SubTitle color={total.total >= 0 ? "green" : "red"}>

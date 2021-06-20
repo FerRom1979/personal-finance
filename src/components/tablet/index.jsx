@@ -3,18 +3,18 @@ import PropTypes from "prop-types";
 
 import { Title, WrapperData, TextData, WrapperTablet } from "./styles";
 
-const Tablet = ({ totalIncomes }) => {
+const Tablet = ({ totalIncomes, title, totalExpenses, total }) => {
   return (
     <WrapperTablet>
-      <Title>Daily summary</Title>
+      <Title>{title}</Title>
       <WrapperData bg={"#43A854"}>
-        <TextData>Incomes: {totalIncomes.totalIncome}$</TextData>
+        <TextData>Incomes: {totalIncomes}$</TextData>
       </WrapperData>
       <WrapperData bg={"#5B69E2"}>
-        <TextData>Expenses: {totalIncomes.totalExpenses}$</TextData>
+        <TextData>Expenses: {totalExpenses}$</TextData>
       </WrapperData>
       <WrapperData bg={"#0099FF"}>
-        <TextData>Balance: {totalIncomes.total}$</TextData>
+        <TextData>Balance: {total}$</TextData>
       </WrapperData>
       <WrapperData bg={"#FFD700"}>
         <TextData>Available: 12000$</TextData>
@@ -23,7 +23,10 @@ const Tablet = ({ totalIncomes }) => {
   );
 };
 Tablet.propTypes = {
-  totalIncomes: PropTypes.object.isRequired,
+  totalIncomes: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  totalExpenses: PropTypes.string.isRequired,
+  total: PropTypes.string.isRequired,
 };
 
 export default Tablet;

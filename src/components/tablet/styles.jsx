@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const WrapperTablet = styled.div`
   width: 378px;
   height: 400px;
-  margin: auto;
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
