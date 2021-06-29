@@ -21,7 +21,7 @@ export const getTotal = (incomes) => {
       income.category === "expenses" &&
       moment(income.createdAt).format("dddd Do MMMM YYYY") == today.format("dddd Do MMMM YYYY")
     )
-      dataDay.totalExpensesDay += income.totalIncome;
+      totalExpensesDay += income.totalIncome;
 
     if (income.category === "incomes") totalIncome += income.totalIncome;
     if (income.category === "expenses") totalExpenses += income.totalIncome;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CardIncome, MenuResponsive, Tablet } from "../../components";
+import Graphic from "../../components/graphic";
 import { separatedCommas, getTotal, getTotalMonth, getTotalYear } from "../../constants";
 import { getIncomes } from "../../redux/incomes/actions";
 
@@ -52,6 +53,9 @@ const Index = () => {
             title={"Year summary"}
           />
         </WrapperData>
+        <div style={{ width: "80%", height: "400px", margin: "auto" }}>
+          <Graphic incomes={incomes} />
+        </div>
         <WrapperTotal>
           <SubTitle>total:</SubTitle>
           <SubTitle color={total.total >= 0 ? "green" : "red"}>

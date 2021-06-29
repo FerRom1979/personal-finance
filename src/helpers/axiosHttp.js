@@ -5,7 +5,7 @@ export const axiosHttp = () => {
     const defaultHeader = {
       accept: "application/json",
       Authorization: sessionStorage.getItem("token"),
-      _id: sessionStorage.getItem("id"),
+      _id: localStorage.getItem("id"),
     };
 
     const controller = new AbortController();
@@ -26,17 +26,20 @@ export const axiosHttp = () => {
       return console.log(error);
     }
   };
+  const get = (url, options = {}) => customAxios(url, options);
+
   const post = (url, options = {}) => {
     options.method = "POST";
     return customAxios(url, options);
   };
+
   const del = (url, options = {}) => {
     options.method = "DELETE";
     return customAxios(url, options);
   };
   return {
     post,
-
+    get,
     del,
   };
 };

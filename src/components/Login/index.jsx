@@ -41,8 +41,8 @@ const Login = () => {
       };
       const info = await api.post(url, options);
 
-      sessionStorage.setItem("token", await info.token);
-      dispatch(addUserAction(await info.token));
+      localStorage.setItem("token", await info.token);
+      dispatch(addUserAction(info));
       if (info) history.push("/home");
     } catch (error) {
       if (error) setServerError(true);

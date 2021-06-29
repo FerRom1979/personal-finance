@@ -2,8 +2,8 @@ import { GET_INCOMES } from "./types";
 import axios from "axios";
 
 export const getIncomes = () => async (dispatch) => {
-  const tokenItem = sessionStorage.getItem("token");
-  const id = sessionStorage.getItem("id");
+  const tokenItem = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
   try {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_URI}/incomes`, {
       headers: {
