@@ -33,7 +33,7 @@ const Home = () => {
 
   return (
     <Content>
-      <div s>
+      <div>
         <Header />
       </div>
       <div>

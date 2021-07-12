@@ -37,7 +37,6 @@ export const WrapperImg = styled.div`
 export const FormWrapper = styled.form`
   margin-top: 30px;
   width: 860px;
-  height: 264px;
   margin-left: 40px;
   display: flex;
   flex-direction: column;
@@ -61,6 +60,7 @@ export const TitleInput = styled.h1`
 `;
 export const InputWrapper = styled.input`
   width: 860px;
+  margin-bottom: 40px;
   border: none;
   text-align: center;
   font-size: 30px;

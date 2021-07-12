@@ -35,25 +35,6 @@ const CardIncome = ({ typeData }) => {
     if (moment(el.createdAt.slice(0, 19)) >= today.format()) return el;
   });
 
-  useEffect(() => {
-    switch (dataType) {
-      case "day":
-        setDataIncome(incomes.filter((el) => moment(el.createdAt.slice(0, 19)) === today.format()));
-        return dataIncome ? dataIncome : setMessageDefault("today there were no expenses");
-      case "week":
-        setDataIncome(incomes.filter((el) => el.createdAt.slice(0, 19) < today.format()));
-        return dataIncome ? dataIncome : setMessageDefault("to week there were no expenses");
-      case "month":
-        setDataIncome(incomes.filter((el) => el.createdAt.slice(0, 19) < today.format()));
-        return dataIncome ? dataIncome : setMessageDefault("to month there were no expenses");
-      case "year":
-        setDataIncome(incomes.filter((el) => el.createdAt.slice(0, 19) < today.format()));
-        return dataIncome ? dataIncome : setMessageDefault("to year there were no expenses");
-      default:
-        return setMessageDefault("to period there were no expenses");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataType]);
   const modal = () => {
     setOpenModal(!openModal);
   };

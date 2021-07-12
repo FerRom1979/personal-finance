@@ -2,20 +2,21 @@ import moment from "moment";
 
 export const getTotalYear = (incomes, y = 0) => {
   const year = moment().subtract(y, "year").format("YYYY");
-  let totalIncomesYear = 0;
-  let totalExpensesYear = 0;
-  let totalYear = 0;
+  let totalIncomes = 0;
+  let totalExpenses = 0;
 
   incomes.map((income) => {
     if ((income.category === "incomes") & (moment(income.createdAt).format("YYYY") === year))
-      totalIncomesYear += income.totalIncome;
+      totalIncomes += income.totalIncome;
     if ((income.category === "expenses") & (moment(income.createdAt).format("YYYY") === year))
-      totalExpensesYear += income.totalIncome;
+      totalExpenses += income.totalIncome;
   });
-
+  const incomesInfo = incomes.filter((income) => moment(income.createdAt).format("YYYY") == year);
   return {
-    totalIncomesYear,
-    totalExpensesYear,
-    totalYear: totalIncomesYear - totalExpensesYear,
+    totalIncomes,
+    totalExpenses,
+    totalData: totalIncomes - totalExpenses,
+    title: "Year summary",
+    incomesInfo,
   };
 };

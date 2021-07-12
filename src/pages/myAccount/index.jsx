@@ -8,6 +8,7 @@ import { getCountries, languages } from "../../constants";
 import CustomSelect from "../../components/reactSelect";
 import { colors } from "../../constants";
 import { ButtonCustom, InputCustom } from "../../components";
+import Header from "../../components/header";
 
 import {
   Avatar,
@@ -38,10 +39,15 @@ const MyAccount = () => {
     };
     get();
   }, []);
+  const handleChange = (value) => {
+    console.log(value);
+  };
+  let values;
+  console.log(values);
   return (
     <>
+      <Header />
       <WrapperHeader>
-        <Logo>LOGO</Logo>
         <WrapperAvatar>
           <Avatar src={AvatarMen} alt="avatar" width={"40px"} height={"40px"} />
           <h6>{user ? user.name : "user"}</h6>
@@ -89,7 +95,7 @@ const MyAccount = () => {
           </WrapperSelect>
           <WrapperSelect>
             <span>Language</span>
-            <CustomSelect options={languages} defaultValue={languages[0]} />
+            <CustomSelect options={languages} defaultValue={languages[0]} onChange={handleChange} />
           </WrapperSelect>
         </WrapperCardLanguage>
 

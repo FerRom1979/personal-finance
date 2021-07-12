@@ -1,5 +1,5 @@
 import React from "react";
-import { Bar } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import PropTypes from "prop-types";
 
 const Graphic = ({ incomes }) => {
@@ -9,12 +9,12 @@ const Graphic = ({ incomes }) => {
   let e = 0;
   incomesData.map((income) => (i += income.totalIncome));
   expensesData.map((income) => (e += income.totalIncome));
-  console.log(expensesData);
+
   const data = {
     labels: ["Incomes", "Expenses"],
     datasets: [
       {
-        label: ["Incomes"],
+        label: "Incomes",
         data: [i, e],
         backgroundColor: ["#28b463", "#c0392b", "#2471a3", "#d68910", "#34495e"],
         borderWidth: 1,
@@ -33,7 +33,7 @@ const Graphic = ({ incomes }) => {
       fontSize: 30,
     },
   };
-  return <Bar data={data} options={options} />;
+  return <Pie data={data} options={options} />;
 };
 Graphic.propTypes = {
   incomes: PropTypes.object.isRequired,

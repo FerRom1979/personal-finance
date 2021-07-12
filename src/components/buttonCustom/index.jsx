@@ -3,7 +3,17 @@ import PropTypes from "prop-types";
 
 import { Button } from "./styles";
 
-const ButtonCustom = ({ values, color, type, onClick, minWidth, background, width, margin }) => {
+const ButtonCustom = ({
+  values,
+  color,
+  type,
+  onClick,
+  minWidth,
+  background,
+  width,
+  margin,
+  mr,
+}) => {
   return (
     <Button
       type={type}
@@ -12,6 +22,7 @@ const ButtonCustom = ({ values, color, type, onClick, minWidth, background, widt
       minWidth={minWidth}
       background={background}
       margin={margin}
+      mr={mr}
     >
       {values}
     </Button>
@@ -27,6 +38,7 @@ ButtonCustom.propTypes = {
   minWidth: PropTypes.string,
   width: PropTypes.string,
   margin: PropTypes.string,
+  mr: PropTypes.string,
 };
 ButtonCustom.defaultProps = {
   values: "",
@@ -36,6 +48,7 @@ ButtonCustom.defaultProps = {
   background: "",
   width: "",
   margin: "",
+  mr: "",
 };
 
 export default ButtonCustom;

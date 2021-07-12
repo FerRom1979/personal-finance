@@ -1,24 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { CardIncome, MenuResponsive, Tablet } from "../../components";
+import { CardIncome, Tablet, ReactSelect } from "../../components";
+import ExpenseCard from "../../components/expenseCard";
 import Graphic from "../../components/graphic";
-import { separatedCommas, getTotal, getTotalMonth, getTotalYear } from "../../constants";
+import Header from "../../components/header";
+import InputRadio from "../../components/inputRadio";
+import { separatedCommas, getTotal, getTotalData } from "../../constants";
 import { getIncomes } from "../../redux/incomes/actions";
 
 import {
-  WrapperHeader,
-  WrapperMenu,
   WrapperTotal,
   WrapperSubTitle,
   SubTitle,
   WrapperData,
+  Title,
+  Select,
+  WrapperInputRadio,
 } from "./styles";
 
 const Index = () => {
+  const [date, setDate] = useState("day");
   const incomes = useSelector((state) => state.incomesData.incomes);
   const [typeData, setTypeData] = useState("incomes");
   const dispatch = useDispatch();
-  const total = getTotal(incomes);
+
+  const { totalIncomes, totalExpenses, totalData, title, incomesInfo } = getTotalData(
+    date,
+    incomes
+  );
+
+  const total = getTotal(incomesInfo);
   useEffect(() => {
     const getIncomesData = async () => {
       dispatch(getIncomes());
@@ -29,42 +40,66 @@ const Index = () => {
 
   return (
     <div>
-      <WrapperHeader>
-        <WrapperMenu>
-          <MenuResponsive />
-        </WrapperMenu>
-        <WrapperData>
-          <Tablet
-            totalIncomes={getTotal(incomes).dataDay.totalIncomesDay}
-            totalExpenses={getTotal(incomes).dataDay.totalExpensesDay}
-            total={getTotal(incomes).dataDay.totalDay}
-            title={"Daily summary"}
+      <Header />
+      <WrapperSubTitle>
+        <Title>DASHBOARD</Title>
+        <WrapperInputRadio>
+          <InputRadio
+            label={"Day"}
+            name={"date"}
+            id={"day"}
+            value={"day"}
+            onChange={(e) => setDate(e.target.value)}
           />
-          <Tablet
-            totalIncomes={getTotalMonth(incomes).totalIncomesMonth}
-            totalExpenses={getTotalMonth(incomes).totalExpensesMonth}
-            total={getTotalMonth(incomes).totalMonth}
-            title={"Month summary"}
+          <InputRadio
+            label={"Month"}
+            name={"date"}
+            id={"month"}
+            value={"month"}
+            onChange={(e) => setDate(e.target.value)}
           />
-          <Tablet
-            totalIncomes={getTotalYear(incomes).totalIncomesYear}
-            totalExpenses={getTotalYear(incomes).totalExpensesYear}
-            total={getTotalYear(incomes).totalYear}
-            title={"Year summary"}
+
+          <InputRadio
+            label={"Year"}
+            name={"date"}
+            id={"year"}
+            value={"year"}
+            onChange={(e) => setDate(e.target.value)}
           />
-        </WrapperData>
-        <div style={{ width: "80%", height: "400px", margin: "auto" }}>
-          <Graphic incomes={incomes} />
-        </div>
-        <WrapperTotal>
-          <SubTitle>total:</SubTitle>
-          <SubTitle color={total.total >= 0 ? "green" : "red"}>
-            {total && total.total < 0
-              ? ` ${separatedCommas(total.total)}$`
-              : ` ${separatedCommas(total.total)}$`}
-          </SubTitle>
-        </WrapperTotal>
-      </WrapperHeader>
+        </WrapperInputRadio>
+
+        <Select>
+          <ReactSelect
+            label={getTotal().toDay.format("ll")}
+            onChange={() => console.log("select")}
+          />
+        </Select>
+      </WrapperSubTitle>
+
+      <WrapperData>
+        <Tablet
+          totalIncomes={totalIncomes}
+          totalExpenses={totalExpenses}
+          total={totalData}
+          available={getTotal(incomes)}
+          title={title}
+        />
+      </WrapperData>
+
+      <ExpenseCard />
+
+      <div style={{ width: "80%", height: "400px", margin: "auto", display: "none" }}>
+        <Graphic incomes={incomes} />
+      </div>
+      <WrapperTotal>
+        <SubTitle>total:</SubTitle>
+        <SubTitle color={total.total >= 0 ? "green" : "red"}>
+          {total && total.total < 0
+            ? ` ${separatedCommas(total.total)}$`
+            : ` ${separatedCommas(total.total)}$`}
+        </SubTitle>
+      </WrapperTotal>
+
       <WrapperSubTitle>
         <SubTitle color={"green"} onClick={() => setTypeData("incomes")} cursor={"pointer"}>
           INCOME
