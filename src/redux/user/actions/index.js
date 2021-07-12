@@ -5,5 +5,4 @@ export const addUserAction = (info) => async (dispatch) => {
     type: GET_DATA_USER,
     payload: info,
   });
-  localStorage.setItem("id", info._id);
 };

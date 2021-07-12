@@ -4,7 +4,7 @@ export const axiosHttp = () => {
   const customAxios = async (endpoint, options) => {
     const defaultHeader = {
       accept: "application/json",
-      Authorization: sessionStorage.getItem("token"),
+      Authorization: localStorage.getItem("token"),
       _id: localStorage.getItem("id"),
     };
 

@@ -2,20 +2,24 @@ import moment from "moment";
 
 export const getTotalMonth = (incomes, mont = 0) => {
   const month = moment().subtract(mont, "month").format("MMMM YYYY");
-  let totalIncomesMonth = 0;
-  let totalExpensesMonth = 0;
-  let totalMonth = 0;
+  let totalIncomes = 0;
+  let totalExpenses = 0;
 
   incomes.map((income) => {
     if ((income.category === "incomes") & (moment(income.createdAt).format("MMMM YYYY") === month))
-      totalIncomesMonth += income.totalIncome;
+      totalIncomes += income.totalIncome;
     if ((income.category === "expenses") & (moment(income.createdAt).format("MMMM YYYY") === month))
-      totalExpensesMonth += income.totalIncome;
+      totalExpenses += income.totalIncome;
   });
+  const incomesInfo = incomes.filter(
+    (income) => moment(income.createdAt).format("MMMM YYYY") == month
+  );
 
   return {
-    totalIncomesMonth,
-    totalExpensesMonth,
-    totalMonth: totalIncomesMonth - totalExpensesMonth,
+    totalIncomes,
+    totalExpenses,
+    totalData: totalIncomes - totalExpenses,
+    title: "Month summary",
+    incomesInfo,
   };
 };

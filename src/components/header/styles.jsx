@@ -5,20 +5,30 @@ const { tablet } = mediaQueries;
 
 export const Content = styled.div`
   width: 100%;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  padding-top: 35px;
-  padding-bottom: 20px;
-  background-color: #f6f8fb;
+
+  background-color: #2962ff;
+
   ${tablet} {
   }
 `;
+export const WrapperMenu = styled.div`
+  display: flex;
+`;
 export const Title = styled.h3`
-  display: none;
+  margin: 10px 20px 0 0px;
+  color: #ffffff;
+  // margin-left: 40px;
+  font-size: 30px;
 `;
 export const Logo = styled.span`
-  margin-left: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+  color: white;
 `;
 export const WrapperRegister = styled.div`
   margin-right: 20px;

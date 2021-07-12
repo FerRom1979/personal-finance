@@ -5,6 +5,7 @@ export const Button = styled.button`
   border-radius: 5px;
   min-height: 50px;
   padding: 8px 22px;
+  margin-right: ${(props) => (props.mr ? props.mr : "")};
   margin: ${(props) => (props.margin ? props.margin : "")};
   border: none;
   width: ${(props) => (props.width ? props.width : "")};

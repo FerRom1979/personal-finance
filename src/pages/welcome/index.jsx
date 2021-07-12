@@ -10,7 +10,7 @@ import { Content, Title } from "./styles";
 const Welcome = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const tokenItem = sessionStorage.getItem("token");
+  const tokenItem = localStorage.getItem("token");
 
   const login = async () => {
     try {
@@ -21,9 +21,9 @@ const Welcome = () => {
       const info = await api.get(url);
 
       localStorage.setItem("token", tokenItem);
-
       dispatch(addUserAction(await info));
       if (info) history.push("/home");
+      if (!info) history.push("/login");
     } catch (error) {
       if (error) history.push("/login");
     }

@@ -7,6 +7,9 @@ import customStyles from "./custom-style";
 
 const ReactSelect = ({ options, defaultValues, label }) => {
   const animatedComponents = makeAnimated();
+  const handleChange = (value) => {
+    console.log(value);
+  };
   return (
     <>
       <Select
@@ -19,6 +22,7 @@ const ReactSelect = ({ options, defaultValues, label }) => {
         className="basic-single"
         name="color"
         placeholder={label}
+        onChange={handleChange}
       />
     </>
   );

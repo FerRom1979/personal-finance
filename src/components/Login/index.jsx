@@ -42,7 +42,9 @@ const Login = () => {
       const info = await api.post(url, options);
 
       localStorage.setItem("token", await info.token);
-      dispatch(addUserAction(info));
+      localStorage.setItem("id", info.user._id);
+
+      dispatch(addUserAction(info.user));
       if (info) history.push("/home");
     } catch (error) {
       if (error) setServerError(true);

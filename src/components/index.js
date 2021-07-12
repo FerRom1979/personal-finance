@@ -6,6 +6,7 @@ import InputCustom from "./inputCustom";
 import CardIncome from "./cardIncome";
 import MenuResponsive from "./menu";
 import Tablet from "./tablet";
+import ReactSelect from "./reactSelect";
 
 export { Card };
 export { Welcome };
@@ -15,3 +16,4 @@ export { InputCustom };
 export { CardIncome };
 export { MenuResponsive };
 export { Tablet };
+export { ReactSelect };
