@@ -31,6 +31,8 @@ export const Logo = styled.span`
   color: white;
 `;
 export const WrapperRegister = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-right: 20px;
   background-color: #2962ff;
   padding: 10px;
@@ -44,4 +46,14 @@ export const StarApp = styled.span`
 export const WrapperMenuResponsive = styled.div`
   height: 600px;
   position: absolute;
+`;
+export const ButtonAdd = styled.button`
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background-color: transparent;
+`;
+export const ADDSpan = styled.span`
+  font-size: 20px;
+  color: #ffffff;
 `;

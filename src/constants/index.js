@@ -12,6 +12,7 @@ import { getTotalYear } from "./get-total-year";
 import { getResponsive } from "./get-screen";
 import { getTotalDay } from "./get-total-day";
 import { getTotalData } from "./get-total-data";
+import { browsers } from "./browser";
 
 export { getCountries };
 export { languages };
@@ -27,3 +28,4 @@ export { getTotalYear };
 export { getResponsive };
 export { getTotalDay };
 export { getTotalData };
+export { browsers };

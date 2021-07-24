@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getColor } from "../../constants";
 
 export const WrapperTablet = styled.div`
   width: 378px;
@@ -27,7 +28,7 @@ export const WrapperData = styled.div`
   width: 240px;
   height: 50px;
   margin: 10px 0;
-  background-color: ${({ bg }) => bg || ""};
+  background-color: ${({ bg }) => getColor(bg)};
   border-radius: 5px;
   display: flex;
   align-items: center;

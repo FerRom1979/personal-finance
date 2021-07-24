@@ -1,24 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { CardIncome, Tablet, ReactSelect } from "../../components";
-import ExpenseCard from "../../components/expenseCard";
+import { Tablet } from "../../components";
 import Graphic from "../../components/graphic";
 import Header from "../../components/header";
 import InputRadio from "../../components/inputRadio";
-import { separatedCommas, getTotal, getTotalData } from "../../constants";
+import Modal from "../../components/modal/modal";
+import { getTotal, getTotalData } from "../../constants";
 import { getIncomes } from "../../redux/incomes/actions";
+import { useModal } from "../../hooks/useModal";
 
-import {
-  WrapperTotal,
-  WrapperSubTitle,
-  SubTitle,
-  WrapperData,
-  Title,
-  Select,
-  WrapperInputRadio,
-} from "./styles";
+import { WrapperSubTitle, WrapperData, Title, Select, WrapperInputRadio } from "./styles";
+import CreateIncome from "../../components/createIncome";
 
 const Index = () => {
+  const [isOpenModal, openModal, closeModal] = useModal(false);
   const [date, setDate] = useState("day");
   const incomes = useSelector((state) => state.incomesData.incomes);
   const [typeData, setTypeData] = useState("incomes");
@@ -40,7 +35,7 @@ const Index = () => {
 
   return (
     <div>
-      <Header />
+      <Header openModal={openModal} />
       <WrapperSubTitle>
         <Title>DASHBOARD</Title>
         <WrapperInputRadio>
@@ -69,10 +64,7 @@ const Index = () => {
         </WrapperInputRadio>
 
         <Select>
-          <ReactSelect
-            label={getTotal().toDay.format("ll")}
-            onChange={() => console.log("select")}
-          />
+          <span>{getTotal().toDay.format("ll")}</span>
         </Select>
       </WrapperSubTitle>
 
@@ -84,33 +76,12 @@ const Index = () => {
           available={getTotal(incomes)}
           title={title}
         />
+
+        <Graphic incomes={totalIncomes} expenses={totalExpenses} />
       </WrapperData>
-
-      <ExpenseCard />
-
-      <div style={{ width: "80%", height: "400px", margin: "auto", display: "none" }}>
-        <Graphic incomes={incomes} />
-      </div>
-      <WrapperTotal>
-        <SubTitle>total:</SubTitle>
-        <SubTitle color={total.total >= 0 ? "green" : "red"}>
-          {total && total.total < 0
-            ? ` ${separatedCommas(total.total)}$`
-            : ` ${separatedCommas(total.total)}$`}
-        </SubTitle>
-      </WrapperTotal>
-
-      <WrapperSubTitle>
-        <SubTitle color={"green"} onClick={() => setTypeData("incomes")} cursor={"pointer"}>
-          INCOME
-        </SubTitle>
-        <SubTitle color={"red"} onClick={() => setTypeData("expenses")} cursor={"pointer"}>
-          EXPENSES
-        </SubTitle>
-      </WrapperSubTitle>
-      <div>
-        <CardIncome typeData={typeData} />
-      </div>
+      <Modal isOpen={isOpenModal} closeModal={closeModal}>
+        <CreateIncome />
+      </Modal>
     </div>
   );
 };

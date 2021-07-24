@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { ButtonCustom } from "../index";
+import { ButtonCustom } from "../../components/index";
 import { useSelector } from "react-redux";
 import { colors } from "../../constants";
 import { axiosHttp } from "../../helpers/axiosHttp";
@@ -20,7 +20,7 @@ import {
   WrapperAddButton,
   WrapperCard,
 } from "./styles";
-import CreateIncome from "../createIncome";
+import CreateIncome from "../../components/createIncome";
 
 const CardIncome = ({ typeData }) => {
   const incomes = useSelector((state) => state.incomesData.incomes);
