@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
-import ButtonCustom from "../buttonCustom";
+import ButtonCustom from "../../components/buttonCustom";
 import { validationSchema } from "./validation-schema";
 import { colors, initialValuesIncomes } from "../../constants";
 import { axiosHttp } from "../../helpers/axiosHttp";
@@ -12,7 +12,7 @@ import {
   TitleInput,
   WrapperBottomLogin,
   MessageError,
-} from "../Login/styles";
+} from "../../components/Login/styles";
 
 const ExpenseCard = () => {
   const onSubmit = async (values) => {

@@ -24,8 +24,18 @@ export const Select = styled.div`
   width: 400px;
   border: 1px solid black;
   border-radius: 5px;
-  height: 50px;
+  font-size: 30px;
+  padding-top: 5px;
+  text-align: center;
 `;
+
+export const WrapperData = styled.div`
+  width: 100%;
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-around;
+`;
+
 export const WrapperHeader = styled.div``;
 export const WrapperMenu = styled.div`
   top: 20px;
@@ -41,10 +51,4 @@ export const SubTitle = styled.span`
   color: ${(props) => (props.color ? props.color : "")};
   cursor: ${(props) => (props.cursor ? props.cursor : "")};
   font-size: 20px;
-`;
-
-export const WrapperData = styled.div`
-  margin-top: 80px;
-  display: flex;
-  justify-content: space-evenly;
 `;

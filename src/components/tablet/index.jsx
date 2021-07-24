@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { separatedCommas } from "../../constants";
+import { separatedCommas, colors } from "../../constants";
 
 import { Title, WrapperData, TextData, WrapperTablet } from "./styles";
 
@@ -8,16 +8,16 @@ const Tablet = ({ totalIncomes, title, totalExpenses, total, available }) => {
   return (
     <WrapperTablet>
       <Title>{title}</Title>
-      <WrapperData bg={"#43A854"}>
+      <WrapperData bg={colors.GREEN}>
         <TextData>Incomes: {separatedCommas(totalIncomes)}$</TextData>
       </WrapperData>
-      <WrapperData bg={"#5B69E2"}>
+      <WrapperData bg={colors.VIOLET}>
         <TextData>Expenses: {separatedCommas(totalExpenses)}$</TextData>
       </WrapperData>
-      <WrapperData bg={"#0099FF"}>
+      <WrapperData bg={colors.LIGHTBLUE}>
         <TextData>Balance: {separatedCommas(total)}$</TextData>
       </WrapperData>
-      <WrapperData bg={"#FFD700"}>
+      <WrapperData bg={colors.YELLOW}>
         <TextData>Available: {separatedCommas(available.total)}$</TextData>
       </WrapperData>
     </WrapperTablet>

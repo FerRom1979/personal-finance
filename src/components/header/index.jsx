@@ -5,7 +5,9 @@ import calculator from "../../images/iconmonstr-calculator-2.svg";
 import avatar from "../../images/iconmonstr-user-20.svg";
 import home from "../../images/iconmonstr-home-3.svg";
 import contact from "../../images/iconmonstr-email-13.svg";
+import coin from "../../images/iconmonstr-coin-2.svg";
 import useResize from "../../hooks/useResize";
+import PropTypes from "prop-types";
 
 import {
   Content,
@@ -15,9 +17,11 @@ import {
   StarApp,
   WrapperMenuResponsive,
   WrapperMenu,
+  ButtonAdd,
+  ADDSpan,
 } from "./styles";
 
-const Header = () => {
+const Header = ({ openModal }) => {
   return (
     <Content>
       {useResize().width < 430 ? (
@@ -54,13 +58,17 @@ const Header = () => {
 
       <Title>Personal Finance</Title>
 
-      <WrapperRegister>
-        <Link to="/Login" style={{ textDecoration: "none" }}>
-          <StarApp>Start App</StarApp>
-        </Link>
-      </WrapperRegister>
+      <ButtonAdd type="button" onClick={openModal}>
+        <img src={coin} alt="logo" width="50px" />
+        <ADDSpan>ADD</ADDSpan>
+      </ButtonAdd>
     </Content>
   );
 };
-
+Header.propTypes = {
+  openModal: PropTypes.bool,
+};
+Header.defaultProps = {
+  openModal: false,
+};
 export default Header;

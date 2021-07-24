@@ -5,8 +5,9 @@ import { ButtonCustom } from "../../components";
 import { useDispatch } from "react-redux";
 import { addUserAction } from "../../redux/user/actions";
 import { useHistory } from "react-router-dom";
-import { colors, initialValuesLogin } from "../../constants";
+import { colors, initialValuesLogin, browsers } from "../../constants";
 import { axiosHttp } from "../../helpers/axiosHttp";
+import { getBrowser } from "../../helpers/getBrowser";
 import Message from "../message";
 import imgLogin from "../../images/login.png";
 
@@ -27,6 +28,8 @@ const Login = () => {
   const [serverError, setServerError] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
+  const browser = getBrowser(browsers.CHROME);
+  console.log(browser);
 
   const onSubmit = async (values) => {
     setServerError(false);
@@ -58,7 +61,6 @@ const Login = () => {
   });
 
   const goToRegister = () => history.push("/register");
-
   return (
     <Content>
       <WrapperTitle>
