@@ -11,6 +11,7 @@ import { useModal } from "../../hooks/useModal";
 
 import { WrapperSubTitle, WrapperData, Title, Select, WrapperInputRadio } from "./styles";
 import CreateIncome from "../../components/createIncome";
+import TableIncomes from "../../components/tableIncomes";
 
 const Index = () => {
   const [isOpenModal, openModal, closeModal] = useModal(false);
@@ -23,7 +24,6 @@ const Index = () => {
     date,
     incomes
   );
-
   const total = getTotal(incomesInfo);
   useEffect(() => {
     const getIncomesData = async () => {
@@ -78,7 +78,9 @@ const Index = () => {
         />
 
         <Graphic incomes={totalIncomes} expenses={totalExpenses} />
+        <TableIncomes incomes={incomes} />
       </WrapperData>
+
       <Modal isOpen={isOpenModal} closeModal={closeModal}>
         <CreateIncome />
       </Modal>
