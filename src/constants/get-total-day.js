@@ -21,7 +21,6 @@ export const getTotalDay = (incomes) => {
     (income) =>
       moment(income.createdAt).format("dddd Do MMMM YYYY") === today.format("dddd Do MMMM YYYY")
   );
-  console.log(incomesInfo);
   return {
     totalIncomes,
     totalExpenses,
