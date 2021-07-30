@@ -13,7 +13,6 @@ const CreateIncome = () => {
       const api = axiosHttp();
       const url = `${process.env.REACT_APP_SERVER_URI}/incomes`;
       const res = await values;
-      console.log(res);
       const options = {
         data: {
           category: res.category ? "incomes" : "expenses",
