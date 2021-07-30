@@ -25,6 +25,7 @@ const Index = () => {
     incomes
   );
   const total = getTotal(incomesInfo);
+
   useEffect(() => {
     const getIncomesData = async () => {
       dispatch(getIncomes());
@@ -78,7 +79,7 @@ const Index = () => {
         />
 
         <Graphic incomes={totalIncomes} expenses={totalExpenses} />
-        <TableIncomes incomes={incomes} />
+        <TableIncomes incomes={incomes.length} />
       </WrapperData>
 
       <Modal isOpen={isOpenModal} closeModal={closeModal}>
