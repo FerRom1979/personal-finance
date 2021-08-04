@@ -43,7 +43,7 @@ const MyAccount = () => {
     console.log(value);
   };
   let values;
-  console.log(values);
+
   return (
     <>
       <Header />

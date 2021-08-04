@@ -25,15 +25,15 @@ const Index = () => {
     incomes
   );
   const total = getTotal(incomesInfo);
+  const getIncomesData = async () => {
+    dispatch(getIncomes());
+  };
 
   useEffect(() => {
-    const getIncomesData = async () => {
-      dispatch(getIncomes());
-    };
     getIncomesData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [typeData]);
-
+  }, []);
+  console.log(incomes);
   return (
     <div>
       <Header openModal={openModal} />

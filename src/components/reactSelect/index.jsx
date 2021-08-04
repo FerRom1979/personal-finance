@@ -28,7 +28,7 @@ const ReactSelect = ({ options, defaultValues, label }) => {
   );
 };
 ReactSelect.propTypes = {
-  options: PropTypes.func,
+  options: PropTypes.string,
   defaultValues: PropTypes.array,
   label: PropTypes.string,
 };

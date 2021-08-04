@@ -3,7 +3,7 @@ import { axiosHttp } from "./axiosHttp";
 export const pagination = async (limit, skip, counter, incomes) => {
   const response = {};
   const calPage = (incomes) => {
-    return Math.round(Math.ceil(incomes / 8));
+    return Math.round(Math.ceil(incomes.length / 8));
   };
   try {
     if (calPage(incomes) === counter) response.disabled = true;
