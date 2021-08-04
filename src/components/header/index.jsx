@@ -66,9 +66,9 @@ const Header = ({ openModal }) => {
   );
 };
 Header.propTypes = {
-  openModal: PropTypes.bool,
+  openModal: PropTypes.func.isRequired,
 };
 Header.defaultProps = {
-  openModal: false,
+  openModal: "",
 };
 export default Header;

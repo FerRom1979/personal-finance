@@ -51,3 +51,18 @@ export const CounterPage = styled.span`
   width: 100%;
   text-align: right;
 `;
+
+export const WrapperLoader = styled.div`
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+`;
+
+export const ButtonOptions = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`;

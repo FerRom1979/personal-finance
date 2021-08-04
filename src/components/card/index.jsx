@@ -4,17 +4,15 @@ import PropTypes from "prop-types";
 
 import { Title, Description, IconWrapper, Content } from "./styles";
 
-const Card = ({ icon, title, description }) => {
-  return (
-    <Content>
-      <IconWrapper>
-        <FontAwesomeIcon icon={icon} />
-      </IconWrapper>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
-    </Content>
-  );
-};
+const Card = ({ icon, title, description }) => (
+  <Content>
+    <IconWrapper>
+      <FontAwesomeIcon icon={icon} />
+    </IconWrapper>
+    <Title>{title}</Title>
+    <Description>{description}</Description>
+  </Content>
+);
 
 Card.propTypes = {
   icon: PropTypes.object,
