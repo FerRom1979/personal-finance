@@ -37,9 +37,16 @@ export const axiosHttp = () => {
     options.method = "DELETE";
     return customAxios(url, options);
   };
+
+  const pat = (url, options = {}) => {
+    options.method = "PATCH";
+
+    return customAxios(url, options);
+  };
   return {
     post,
     get,
     del,
+    pat,
   };
 };
