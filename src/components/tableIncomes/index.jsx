@@ -6,6 +6,11 @@ import Loaders from "../loader";
 import { getIncomes } from "../../redux/incomes/actions";
 import { useSelector, useDispatch } from "react-redux";
 import trash from "../../images/iconmonstr-trash-can-1.svg";
+import pencil from "../../images/iconmonstr-pencil-8.svg";
+import Modal from "../modal/modal";
+import { useModal } from "../../hooks/useModal";
+import EditIncomes from "../editIncome";
+import { axiosHttp } from "../../helpers/axiosHttp";
 
 import {
   Table,
@@ -16,11 +21,12 @@ import {
   WrapperLoader,
   ButtonOptions,
 } from "./styles";
-import { axiosHttp } from "../../helpers/axiosHttp";
 
 const TableIncomes = () => {
+  const [isOpenModal, openModal, closeModal] = useModal(false);
   const incomes = useSelector((state) => state.incomesData.incomes);
-  const [id, setId] = useState();
+  const [dataEdit, setDataEdit] = useState({});
+  const [idEdit, setIdEdit] = useState("");
   const dispatch = useDispatch();
   const api = axiosHttp();
   const [response, setResponse] = useState({
@@ -29,6 +35,7 @@ const TableIncomes = () => {
     disabledPrev: true,
     error: "",
   });
+  const [id, setId] = useState();
   const [counter, setCounter] = useState(1);
   const [skip, setSkip] = useState(0);
   const limit = 8;
@@ -46,6 +53,13 @@ const TableIncomes = () => {
     getIncomesData();
     deleteIncome(id);
   }, [id, dispatch]);
+
+  const handleEditData = (income) => {
+    const { category, description, totalIncome, IncomePermanent, typeOfIncome } = income;
+    setDataEdit({ category, description, totalIncome, IncomePermanent, typeOfIncome });
+    setIdEdit(income._id);
+    openModal();
+  };
 
   return (
     <div>
@@ -78,8 +92,8 @@ const TableIncomes = () => {
                   <td>{income.totalIncome}</td>
                   <td>
                     <WrapperButton>
-                      <ButtonOptions type="button" onClick={() => console.log(income._id)}>
-                        edit
+                      <ButtonOptions type="button" onClick={() => handleEditData(income)}>
+                        <img src={pencil} alt="pencil" width="20px" />
                       </ButtonOptions>
                       <ButtonOptions type="button" onClick={() => setId(income._id)}>
                         <img src={trash} alt="trash" width="20px" />
@@ -111,6 +125,15 @@ const TableIncomes = () => {
               Next {">"}
             </ButtonPage>
           </WrapperButtonPage>
+          <Modal isOpen={isOpenModal} closeModal={closeModal}>
+            <EditIncomes
+              isEdit
+              dataEdit={dataEdit}
+              setDataEdit={setDataEdit}
+              idEdit={idEdit}
+              closeModal={closeModal}
+            />
+          </Modal>
         </>
       )}
     </div>

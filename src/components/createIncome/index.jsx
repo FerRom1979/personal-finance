@@ -42,7 +42,6 @@ const CreateIncome = () => {
         <SpanCheck style={{ paddingRight: "30px" }}>Category</SpanCheck>
         <label htmlFor="category">
           <input
-            style={{ display: "none" }}
             type="checkbox"
             name="category"
             id="category"
@@ -89,10 +88,9 @@ const CreateIncome = () => {
         <MessageError>{formik.errors.totalIncome}</MessageError>
       ) : null}
       <WrapperCheck>
-        <SpanCheck style={{ paddingRight: "30px" }}>Income Permanent</SpanCheck>
         <label htmlFor="IncomePermanent">
+          <SpanCheck>Income Permanent</SpanCheck>
           <input
-            style={{ display: "none" }}
             type="checkbox"
             name="IncomePermanent"
             id="IncomePermanent"

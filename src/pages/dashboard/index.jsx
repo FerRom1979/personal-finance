@@ -33,7 +33,7 @@ const Index = () => {
     getIncomesData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(incomes);
+
   return (
     <div>
       <Header openModal={openModal} />
@@ -83,7 +83,7 @@ const Index = () => {
       </WrapperData>
 
       <Modal isOpen={isOpenModal} closeModal={closeModal}>
-        <CreateIncome />
+        <CreateIncome closeModal={closeModal} />
       </Modal>
     </div>
   );
