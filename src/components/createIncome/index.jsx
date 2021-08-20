@@ -4,26 +4,31 @@ import { ButtonCustom } from "../../components";
 import { validationSchema } from "./validation-schema";
 import { colors, initialValuesIncomes } from "../../constants";
 import { axiosHttp } from "../../helpers/axiosHttp";
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { getIncomes } from "../../redux/incomes/actions";
 
 import { InputWrapper, FormWrapper, MessageError, SpanCheck, WrapperCheck } from "./styles";
 
-const CreateIncome = () => {
+const CreateIncome = ({ closeModal }) => {
+  const dispatch = useDispatch();
   const onSubmit = async (values) => {
     const createIncomes = async () => {
       const api = axiosHttp();
       const url = `${process.env.REACT_APP_SERVER_URI}/incomes`;
-      const res = await values;
       const options = {
         data: {
-          category: res.category ? "incomes" : "expenses",
-          description: res.description,
-          typeOfIncome: res.typeOfIncome,
-          totalIncome: res.totalIncome,
-          IncomePermanent: res.IncomePermanent,
+          category: values.category ? "incomes" : "expenses",
+          description: values.description,
+          typeOfIncome: values.typeOfIncome,
+          totalIncome: values.totalIncome,
+          IncomePermanent: values.IncomePermanent,
         },
       };
       try {
         await api.post(url, options);
+        dispatch(getIncomes());
+        closeModal();
       } catch (err) {
         console.log(err);
       }
@@ -109,6 +114,9 @@ const CreateIncome = () => {
       <ButtonCustom type={"onSubmit"} values={"Add"} minWidth={"300px"} background={colors.BLUE} />
     </FormWrapper>
   );
+};
+CreateIncome.propTypes = {
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default CreateIncome;

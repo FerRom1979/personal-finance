@@ -52,6 +52,10 @@ export const ButtonAdd = styled.button`
   flex-direction: column;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+  :hover {
+    opacity: 0.5;
+  }
 `;
 export const ADDSpan = styled.span`
   font-size: 20px;

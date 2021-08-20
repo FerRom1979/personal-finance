@@ -1,20 +1,14 @@
 import React from "react";
 import MenuResponsive from "../menu";
 import { Link } from "react-router-dom";
-import calculator from "../../images/iconmonstr-calculator-2.svg";
-import avatar from "../../images/iconmonstr-user-20.svg";
-import home from "../../images/iconmonstr-home-3.svg";
-import contact from "../../images/iconmonstr-email-13.svg";
-import coin from "../../images/iconmonstr-coin-2.svg";
 import useResize from "../../hooks/useResize";
 import PropTypes from "prop-types";
+import { home, calculator, avatar, contact, coin } from "../../images";
 
 import {
   Content,
   Title,
   Logo,
-  WrapperRegister,
-  StarApp,
   WrapperMenuResponsive,
   WrapperMenu,
   ButtonAdd,

@@ -1,4 +1,3 @@
-import Card from "./card/index";
 import Welcome from "../pages/home/index";
 import Login from "./Login";
 import ButtonCustom from "./buttonCustom";
@@ -8,7 +7,6 @@ import MenuResponsive from "./menu";
 import Tablet from "./tablet";
 import ReactSelect from "./reactSelect";
 
-export { Card };
 export { Welcome };
 export { Login };
 export { ButtonCustom };
