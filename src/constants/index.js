@@ -13,6 +13,7 @@ import { getResponsive } from "./get-screen";
 import { getTotalDay } from "./get-total-day";
 import { getTotalData } from "./get-total-data";
 import { browsers } from "./browser";
+import { initialForm } from "./initial-form-edit";
 
 export { getCountries };
 export { languages };
@@ -29,3 +30,4 @@ export { getResponsive };
 export { getTotalDay };
 export { getTotalData };
 export { browsers };
+export { initialForm };

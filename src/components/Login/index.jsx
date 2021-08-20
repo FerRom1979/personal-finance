@@ -7,7 +7,6 @@ import { addUserAction } from "../../redux/user/actions";
 import { useHistory } from "react-router-dom";
 import { colors, initialValuesLogin } from "../../constants";
 import { axiosHttp } from "../../helpers/axiosHttp";
-import { getBrowser } from "../../helpers/getBrowser";
 import Message from "../message";
 import imgLogin from "../../images/login.png";
 

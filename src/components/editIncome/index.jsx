@@ -4,18 +4,10 @@ import { editIncome } from "../../helpers/editI_incomes";
 import { useDispatch } from "react-redux";
 import { getIncomes } from "../../redux/incomes/actions";
 import { ButtonCustom } from "../../components";
-import { colors } from "../../constants";
+import { colors, initialForm } from "../../constants";
 
 import { FormWrapper, InputWrapper, MessageError } from "./styles";
 
-const initialForm = {
-  category: "",
-  description: "",
-  typeOfIncome: "",
-  totalIncome: "",
-  incomePermanent: "",
-  id: null,
-};
 const EditIncomes = ({ isEdit, dataEdit, setDataEdit, idEdit, closeModal }) => {
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialForm);

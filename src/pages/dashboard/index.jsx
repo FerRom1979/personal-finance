@@ -2,19 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Tablet } from "../../components";
 import Graphic from "../../components/graphic";
-import Header from "../../components/header";
 import InputRadio from "../../components/inputRadio";
-import Modal from "../../components/modal/modal";
 import { getTotal, getTotalData } from "../../constants";
 import { getIncomes } from "../../redux/incomes/actions";
-import { useModal } from "../../hooks/useModal";
-
-import { WrapperSubTitle, WrapperData, Title, Select, WrapperInputRadio } from "./styles";
-import CreateIncome from "../../components/createIncome";
 import TableIncomes from "../../components/tableIncomes";
 
+import { WrapperSubTitle, WrapperData, Title, Select, WrapperInputRadio } from "./styles";
+
 const Index = () => {
-  const [isOpenModal, openModal, closeModal] = useModal(false);
   const [date, setDate] = useState("day");
   const incomes = useSelector((state) => state.incomesData.incomes);
   const [typeData, setTypeData] = useState("incomes");
@@ -36,7 +31,6 @@ const Index = () => {
 
   return (
     <div>
-      <Header openModal={openModal} />
       <WrapperSubTitle>
         <Title>DASHBOARD</Title>
         <WrapperInputRadio>
@@ -81,10 +75,6 @@ const Index = () => {
         <Graphic incomes={totalIncomes} expenses={totalExpenses} />
         <TableIncomes incomes={incomes.length} />
       </WrapperData>
-
-      <Modal isOpen={isOpenModal} closeModal={closeModal}>
-        <CreateIncome closeModal={closeModal} />
-      </Modal>
     </div>
   );
 };

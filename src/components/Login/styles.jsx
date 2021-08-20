@@ -3,7 +3,6 @@ import LoginImg from "../../images/login.png";
 
 export const Content = styled.div`
   width: 940px;
-  height: 699px;
   margin: 30px auto;
   background: #ffffff;
   box-shadow: 0px 5px 20px rgba(94, 91, 91, 0.25);
@@ -77,5 +76,5 @@ export const MessageError = styled.span`
   font-weight: 300;
 `;
 export const WrapperBottomLogin = styled.div`
-  margin-top: 30px;
+  margin-bottom: 30px;
 `;
