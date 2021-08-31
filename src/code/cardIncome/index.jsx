@@ -5,7 +5,7 @@ import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons
 import { ButtonCustom } from "../../components/index";
 import { useSelector } from "react-redux";
 import { colors } from "../../constants";
-import { axiosHttp } from "../../helpers/axiosHttp";
+import { axiosHttp } from "../../helpers";
 import PropTypes from "prop-types";
 
 import {

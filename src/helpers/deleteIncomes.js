@@ -1,6 +1,6 @@
-import { axiosHttp } from "./axiosHttp";
+import axiosHttp from "./axiosHttp";
 
-export const deleteIncome = async (id) => {
+const deleteIncome = async (id) => {
   try {
     const api = axiosHttp();
     const url = `${process.env.REACT_APP_SERVER_URI}/incomes/${id}`;
@@ -9,3 +9,5 @@ export const deleteIncome = async (id) => {
     console.log(err);
   }
 };
+
+export default deleteIncome;

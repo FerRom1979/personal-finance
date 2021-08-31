@@ -8,7 +8,6 @@ import { getCountries, languages } from "../../constants";
 import CustomSelect from "../../components/reactSelect";
 import { colors } from "../../constants";
 import { ButtonCustom, InputCustom } from "../../components";
-import Header from "../../components/header";
 
 import {
   Avatar,
@@ -46,7 +45,6 @@ const MyAccount = () => {
 
   return (
     <>
-      <Header />
       <WrapperHeader>
         <WrapperAvatar>
           <Avatar src={AvatarMen} alt="avatar" width={"40px"} height={"40px"} />

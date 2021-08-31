@@ -2,20 +2,11 @@ import React from "react";
 import MenuResponsive from "../menu";
 import { Link } from "react-router-dom";
 import useResize from "../../hooks/useResize";
-import PropTypes from "prop-types";
-import { home, calculator, avatar, contact, coin } from "../../images";
+import { home, calculator, avatar, contact } from "../../images";
 
-import {
-  Content,
-  Title,
-  Logo,
-  WrapperMenuResponsive,
-  WrapperMenu,
-  ButtonAdd,
-  ADDSpan,
-} from "./styles";
+import { Content, Title, Logo, WrapperMenuResponsive, WrapperMenu } from "./styles";
 
-const Header = ({ openModal }) => {
+const Header = () => {
   return (
     <Content>
       {useResize().width < 430 ? (
@@ -51,18 +42,8 @@ const Header = ({ openModal }) => {
       )}
 
       <Title>Personal Finance</Title>
-
-      <ButtonAdd type="button" onClick={openModal}>
-        <img src={coin} alt="logo" width="50px" />
-        <ADDSpan>ADD</ADDSpan>
-      </ButtonAdd>
     </Content>
   );
 };
-Header.propTypes = {
-  openModal: PropTypes.func.isRequired,
-};
-Header.defaultProps = {
-  openModal: "",
-};
+
 export default Header;

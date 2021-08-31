@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { pagination } from "../../helpers/getDataPagination";
 import PropTypes from "prop-types";
-import { deleteIncome } from "../../helpers/deleteIncomes";
 import Loaders from "../loader";
 import { getIncomes } from "../../redux/incomes/actions";
 import { useSelector, useDispatch } from "react-redux";
-import trash from "../../images/iconmonstr-trash-can-1.svg";
-import pencil from "../../images/iconmonstr-pencil-8.svg";
+import { trash, pencil } from "../../images";
 import Modal from "../modal/modal";
 import { useModal } from "../../hooks/useModal";
 import EditIncomes from "../editIncome";
-import { axiosHttp } from "../../helpers/axiosHttp";
+import { pagination, deleteIncome, filterIncomes } from "../../helpers";
 
 import {
   Table,
@@ -21,14 +18,15 @@ import {
   WrapperLoader,
   ButtonOptions,
 } from "./styles";
+import InputRadio from "../inputRadio";
 
 const TableIncomes = () => {
   const [isOpenModal, openModal, closeModal] = useModal(false);
   const incomes = useSelector((state) => state.incomesData.incomes);
   const [dataEdit, setDataEdit] = useState({});
+  const [incomesFilter, setIncomesFilter] = useState("");
   const [idEdit, setIdEdit] = useState("");
   const dispatch = useDispatch();
-  const api = axiosHttp();
   const [response, setResponse] = useState({
     data: [],
     disabled: false,
@@ -41,7 +39,7 @@ const TableIncomes = () => {
   const limit = 8;
 
   useEffect(() => {
-    pagination(limit, skip, counter, incomes).then((res) => {
+    pagination(limit, skip, counter).then((res) => {
       setResponse(res);
     });
   }, [skip, counter, incomes]);
@@ -61,15 +59,34 @@ const TableIncomes = () => {
     openModal();
   };
 
+  console.log(response);
   return (
     <div>
-      {response?.data?.length === 0 ? (
+      {!response?.loader ? (
         <WrapperLoader>
           <Loaders />
         </WrapperLoader>
       ) : (
         <>
           <CounterPage>
+            <div>
+              <InputRadio
+                label={"Incomes"}
+                name={"Incomes"}
+                id={"incomes"}
+                value={"incomes"}
+                onChange={(e) => setIncomesFilter(e.target.value)}
+                fontSize={16}
+              />
+              <InputRadio
+                label={"Expenses"}
+                name={"Incomes"}
+                id={"expenses"}
+                value={"expenses"}
+                onChange={(e) => setIncomesFilter(e.target.value)}
+                fontSize={16}
+              />
+            </div>
             Page: {counter} - {counter < response?.countPage + 1 ? response?.countPage : ""}
           </CounterPage>
           <Table>
