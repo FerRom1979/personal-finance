@@ -7,11 +7,13 @@ import Dashboard from "../dashboard";
 import Welcome from "../welcome";
 import Home from "../home";
 import Upload from "../../components/upload";
+import Header from "../../components/header";
 
 const ManagementRoute = () => {
   return (
     <>
       <Router>
+        <Header />
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/home" component={Home} />

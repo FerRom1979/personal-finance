@@ -1,4 +1,4 @@
-import { axiosHttp } from "./axiosHttp";
+import axiosHttp from "./axiosHttp";
 
 export const editIncome = async (id, dataEdit) => {
   try {

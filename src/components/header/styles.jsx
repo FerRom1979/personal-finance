@@ -7,22 +7,23 @@ export const Content = styled.div`
   width: 100%;
   padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
-
   background-color: #2962ff;
 
   ${tablet} {
   }
 `;
+
 export const WrapperMenu = styled.div`
   display: flex;
 `;
+
 export const Title = styled.h3`
   margin: 10px 20px 0 0px;
   color: #ffffff;
-  // margin-left: 40px;
-  font-size: 30px;
+  margin-left: 400px;
+  font-size: 40px;
 `;
+
 export const Logo = styled.span`
   display: flex;
   flex-direction: column;
@@ -30,34 +31,8 @@ export const Logo = styled.span`
   margin-right: 20px;
   color: white;
 `;
-export const WrapperRegister = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
-  background-color: #2962ff;
-  padding: 10px;
-  border-radius: 50px;
-  text-decoration: none;
-`;
-export const StarApp = styled.span`
-  color: #ffffff;
-  text-decoration: none;
-`;
+
 export const WrapperMenuResponsive = styled.div`
   height: 600px;
   position: absolute;
-`;
-export const ButtonAdd = styled.button`
-  display: flex;
-  flex-direction: column;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  :hover {
-    opacity: 0.5;
-  }
-`;
-export const ADDSpan = styled.span`
-  font-size: 20px;
-  color: #ffffff;
 `;

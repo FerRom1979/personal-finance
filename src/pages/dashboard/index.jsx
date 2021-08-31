@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Tablet } from "../../components";
-import Graphic from "../../components/graphic";
-import InputRadio from "../../components/inputRadio";
+import { Tablet, Graphic, InputRadio, TableIncomes, Modal, CreateIncome } from "../../components";
 import { getTotal, getTotalData } from "../../constants";
 import { getIncomes } from "../../redux/incomes/actions";
-import TableIncomes from "../../components/tableIncomes";
+import { useModal } from "../../hooks/useModal";
 
-import { WrapperSubTitle, WrapperData, Title, Select, WrapperInputRadio } from "./styles";
+import {
+  WrapperSubTitle,
+  WrapperData,
+  Title,
+  Select,
+  WrapperInputRadio,
+  ButtonAdd,
+  ADDSpan,
+} from "./styles";
 
-const Index = () => {
+const Dashboard = () => {
+  const [isOpenModal, openModal, closeModal] = useModal(false);
   const [date, setDate] = useState("day");
   const incomes = useSelector((state) => state.incomesData.incomes);
   const [typeData, setTypeData] = useState("incomes");
@@ -40,6 +47,7 @@ const Index = () => {
             id={"day"}
             value={"day"}
             onChange={(e) => setDate(e.target.value)}
+            fontSize={30}
           />
           <InputRadio
             label={"Month"}
@@ -47,6 +55,7 @@ const Index = () => {
             id={"month"}
             value={"month"}
             onChange={(e) => setDate(e.target.value)}
+            fontSize={30}
           />
 
           <InputRadio
@@ -55,12 +64,16 @@ const Index = () => {
             id={"year"}
             value={"year"}
             onChange={(e) => setDate(e.target.value)}
+            fontSize={30}
           />
         </WrapperInputRadio>
 
         <Select>
           <span>{getTotal().toDay.format("ll")}</span>
         </Select>
+        <ButtonAdd type="button" onClick={openModal}>
+          <ADDSpan>+ADD INCOME</ADDSpan>
+        </ButtonAdd>
       </WrapperSubTitle>
 
       <WrapperData>
@@ -75,8 +88,10 @@ const Index = () => {
         <Graphic incomes={totalIncomes} expenses={totalExpenses} />
         <TableIncomes incomes={incomes.length} />
       </WrapperData>
+      <Modal isOpen={isOpenModal} closeModal={closeModal}>
+        <CreateIncome closeModal={closeModal} />
+      </Modal>
     </div>
   );
 };
-
-export default Index;
+export default Dashboard;

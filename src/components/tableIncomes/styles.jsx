@@ -47,7 +47,8 @@ export const ButtonPage = styled.button`
 `;
 
 export const CounterPage = styled.span`
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   text-align: right;
 `;

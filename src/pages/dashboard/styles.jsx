@@ -4,6 +4,7 @@ export const WrapperSubTitle = styled.div`
   margin-top: 20px;
   margin-bottom: 30px;
   display: flex;
+  align-items: baseline;
 `;
 
 export const Title = styled.h3`
@@ -51,4 +52,23 @@ export const SubTitle = styled.span`
   color: ${(props) => (props.color ? props.color : "")};
   cursor: ${(props) => (props.cursor ? props.cursor : "")};
   font-size: 20px;
+`;
+export const ButtonAdd = styled.button`
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 0;
+  margin-left: 20px;
+  :hover {
+    opacity: 0.5;
+  }
+`;
+export const ADDSpan = styled.span`
+  font-size: 28px;
+  color: black;
+  font-weight: 600;
 `;

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const axiosHttp = () => {
+const axiosHttp = () => {
   const customAxios = async (endpoint, options) => {
     const defaultHeader = {
       accept: "application/json",
@@ -50,3 +50,5 @@ export const axiosHttp = () => {
     pat,
   };
 };
+
+export default axiosHttp;

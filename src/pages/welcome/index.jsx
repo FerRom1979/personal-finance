@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addUserAction } from "../../redux/user/actions";
 import { useHistory } from "react-router-dom";
-import { axiosHttp } from "../../helpers/axiosHttp";
+import { axiosHttp } from "../../helpers";
 
 import { Content, Title } from "./styles";
 

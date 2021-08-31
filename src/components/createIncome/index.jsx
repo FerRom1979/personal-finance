@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import { ButtonCustom } from "../../components";
 import { validationSchema } from "./validation-schema";
 import { colors, initialValuesIncomes } from "../../constants";
-import { axiosHttp } from "../../helpers/axiosHttp";
+import { axiosHttp } from "../../helpers";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { getIncomes } from "../../redux/incomes/actions";
