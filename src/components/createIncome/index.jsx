@@ -3,37 +3,15 @@ import { useFormik } from "formik";
 import { ButtonCustom } from "../../components";
 import { validationSchema } from "./validation-schema";
 import { colors, initialValuesIncomes } from "../../constants";
-import { axiosHttp } from "../../helpers";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import { getIncomes } from "../../redux/incomes/actions";
+import { useIncomes } from "../../hooks/useIncomes";
 
 import { InputWrapper, FormWrapper, MessageError, SpanCheck, WrapperCheck } from "./styles";
 
 const CreateIncome = ({ closeModal }) => {
-  const dispatch = useDispatch();
+  const { createIncomes } = useIncomes();
   const onSubmit = async (values) => {
-    const createIncomes = async () => {
-      const api = axiosHttp();
-      const url = `${process.env.REACT_APP_SERVER_URI}/incomes`;
-      const options = {
-        data: {
-          category: values.category ? "incomes" : "expenses",
-          description: values.description,
-          typeOfIncome: values.typeOfIncome,
-          totalIncome: values.totalIncome,
-          IncomePermanent: values.IncomePermanent,
-        },
-      };
-      try {
-        await api.post(url, options);
-        dispatch(getIncomes());
-        closeModal();
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    createIncomes();
+    createIncomes(values, closeModal);
     formik.resetForm();
   };
   const formik = useFormik({
