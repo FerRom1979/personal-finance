@@ -3,16 +3,15 @@ import PropTypes from "prop-types";
 
 import { Label } from "./styles";
 
-const InputRadio = ({ name, id, label, onChange, value, fontSize }) => {
-  return (
-    <>
-      <Label htmlFor={id} fontSize={fontSize}>
-        <span>{label}</span>
-        <input type="radio" name={name} id={id} onChange={onChange} value={value} />
-      </Label>
-    </>
-  );
-};
+const InputRadio = ({ name, id, label, onChange, value, fontSize }) => (
+  <>
+    <Label htmlFor={id} fontSize={fontSize}>
+      <span>{label}</span>
+      <input type="radio" name={name} id={id} onChange={onChange} value={value} />
+    </Label>
+  </>
+);
+
 InputRadio.propTypes = {
   name: PropTypes.string,
   id: PropTypes.string,

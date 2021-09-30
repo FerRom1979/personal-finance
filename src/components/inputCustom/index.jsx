@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 
 import { Input } from "./styles";
 
-const InputCustom = ({ type, placeholder }) => {
-  return <Input type={type} placeholder={placeholder} />;
-};
+const InputCustom = ({ type, placeholder }) => <Input type={type} placeholder={placeholder} />;
 
 InputCustom.propTypes = {
   type: PropTypes.string,

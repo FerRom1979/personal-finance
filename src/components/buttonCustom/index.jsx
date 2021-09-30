@@ -13,21 +13,19 @@ const ButtonCustom = ({
   width,
   margin,
   mr,
-}) => {
-  return (
-    <Button
-      type={type}
-      color={color}
-      onClick={onClick}
-      minWidth={minWidth}
-      background={background}
-      margin={margin}
-      mr={mr}
-    >
-      {values}
-    </Button>
-  );
-};
+}) => (
+  <Button
+    type={type}
+    color={color}
+    onClick={onClick}
+    minWidth={minWidth}
+    background={background}
+    margin={margin}
+    mr={mr}
+  >
+    {values}
+  </Button>
+);
 
 ButtonCustom.propTypes = {
   values: PropTypes.string,
