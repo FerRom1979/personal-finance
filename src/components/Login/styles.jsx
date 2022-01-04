@@ -34,13 +34,13 @@ export const WrapperImg = styled.div`
   max-height: 295px;
 `;
 export const FormWrapper = styled.form`
-  margin-top: 30px;
-  width: 860px;
-  margin-left: 40px;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
+  justify-content: center;
 `;
 
 export const ImgLogin = styled.img`

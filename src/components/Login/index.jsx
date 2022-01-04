@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useFormik } from "formik";
+/* import { useFormik, useField } from "formik"; */
+import { Formik, Form } from "formik";
 import { validationSchema } from "./validation-schema";
 import { ButtonCustom } from "../../components";
 import { useDispatch } from "react-redux";
-import { addUserAction } from "../../redux/user/actions";
+import { addUserAction, getErrorsApi } from "../../redux/user/actions";
 import { useHistory } from "react-router-dom";
 import { colors, initialValuesLogin } from "../../constants";
 import { axiosHttp } from "../../helpers";
-import Message from "../message";
-import imgLogin from "../../images/login.png";
 
-import {
-  FormWrapper,
-  InputWrapper,
-  MessageError,
-  Content,
-  WrapperTitle,
-  Title,
-  WrapperImg,
-  ImgLogin,
-  TitleInput,
-  WrapperBottomLogin,
-} from "./styles";
+import padlock from "../../images/padlock.jpg";
+import FormControl from "../form/FormControl";
+import { WrapperBottomLogin, FormWrapper } from "./styles";
+import Loaders from "../loader";
 
 const Login = () => {
   const [serverError, setServerError] = useState(false);
@@ -51,44 +42,33 @@ const Login = () => {
     }
     formik.resetForm();
   };
-  const formik = useFormik({
-    initialValues: initialValuesLogin,
-    validationSchema,
-    onSubmit,
-  });
 
   const goToRegister = () => history.push("/register");
   return (
-    <Content>
-      <WrapperTitle>
-        <Title>LOGIN</Title>
-        <ButtonCustom values={"Register"} background={colors.BLUE} onClick={goToRegister} />
-      </WrapperTitle>
-      <WrapperImg>
-        <ImgLogin src={imgLogin} alt="login" />
-      </WrapperImg>
-      <FormWrapper onSubmit={formik.handleSubmit}>
-        <TitleInput>EMAIL</TitleInput>
-        <InputWrapper type="email" name="email" id="email" {...formik.getFieldProps("email")} />
-        {formik.touched.email && formik.errors.email ? (
-          <MessageError>{formik.errors.email}</MessageError>
-        ) : null}
-        <TitleInput>PASSWORD</TitleInput>
-        <InputWrapper
-          type="password"
-          name="password"
-          id="password"
-          {...formik.getFieldProps("password")}
-        />
-        {formik.touched.password && formik.errors.password ? (
-          <MessageError>{formik.errors.password}</MessageError>
-        ) : null}
-        {serverError && <Message msg={"Wrong email or password"} color={"red"} />}
-        <WrapperBottomLogin>
-          <ButtonCustom type={"onSubmit"} values={"Login"} background={colors.BLUE} />
-        </WrapperBottomLogin>
-      </FormWrapper>
-    </Content>
+    <Formik
+      initialValues={initialValuesLogin}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {(formik) => {
+        console.log("Formik props", formik);
+        return (
+          <FormWrapper>
+            {formik.isSubmitting ? (
+              <Loaders />
+            ) : (
+              <Form>
+                <FormControl control="input" type="email" label="Email" name="email" />
+                <FormControl control="input" type="password" label="Password" name="password" />
+                <WrapperBottomLogin>
+                  <ButtonCustom type={"onSubmit"} values={"Login"} background={colors.BLUE} />
+                </WrapperBottomLogin>
+              </Form>
+            )}
+          </FormWrapper>
+        );
+      }}
+    </Formik>
   );
 };
 
