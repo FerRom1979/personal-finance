@@ -13,6 +13,7 @@ const ButtonCustom = ({
   width,
   margin,
   mr,
+  disabled,
 }) => (
   <Button
     type={type}
@@ -22,6 +23,8 @@ const ButtonCustom = ({
     background={background}
     margin={margin}
     mr={mr}
+    disabled={disabled}
+    className={disabled ? "disabled" : ""}
   >
     {values}
   </Button>
@@ -37,6 +40,7 @@ ButtonCustom.propTypes = {
   width: PropTypes.string,
   margin: PropTypes.string,
   mr: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 ButtonCustom.defaultProps = {
   values: "",
@@ -47,6 +51,7 @@ ButtonCustom.defaultProps = {
   width: "",
   margin: "",
   mr: "",
+  disabled: "",
 };
 
 export default ButtonCustom;
