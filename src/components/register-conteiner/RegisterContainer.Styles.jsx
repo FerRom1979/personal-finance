@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import LoginImg from "../../images/login.png";
 
 export const Content = styled.div`
   width: 100%;
@@ -109,91 +108,4 @@ export const WrapperForm = styled.div`
       left: 0;
     }
   }
-`;
-export const WrapperSignin = styled.div`
-  position: absolute;
-  left: 0;
-  width: 100%;
-  padding: 50px;
-  transition: 0.5;
-  transition-delay: 0.25s;
-  > .form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  h3 {
-    font-size: 24px;
-  }
-  .forgot {
-    color: #333;
-  }
-  &.active {
-    left: -100%;
-    transition-delay: 0;
-  }
-  @media (max-width: 991px) {
-    top: 0;
-  }
-`;
-
-export const WrapperSignup = styled.div`
-  position: absolute;
-  left: 0;
-  width: 100%;
-  padding: 50px;
-  transition: 0.5;
-  transition-delay: 0.25s;
-  > .form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  h3 {
-    font-size: 24px;
-  }
-  &.active {
-    left: 100%;
-    transition-delay: 0;
-  }
-`;
-export const ButtonSignin = styled.button`
-  color: red;
-`;
-
-export const ImgLogin = styled.img`
-  width: 602px;
-  height: 295px;
-  margin: auto;
-`;
-export const TitleInput = styled.h1`
-  font-family: Work Sans;
-  margin: 0;
-  font-size: 40px;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 47px;
-  color: rgba(0, 0, 0, 0.25);
-`;
-export const InputWrapper = styled.input`
-  width: 860px;
-  margin-bottom: 40px;
-  border: none;
-  text-align: center;
-  font-size: 30px;
-  background: transparent;
-  background-color: transparent;
-  border-bottom: 3px solid rgba(0, 0, 0, 0.25);
-  :hover {
-    border-bottom: 3px solid black;
-  }
-`;
-export const MessageError = styled.span`
-  color: red;
-  font-size: 20px;
-  font-weight: 300;
-`;
-export const WrapperBottom = styled.div`
-  width: 100%;
-  margin-bottom: 30px;
 `;

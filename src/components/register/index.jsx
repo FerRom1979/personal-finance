@@ -1,30 +1,21 @@
 import React, { useState } from "react";
-import { useFormik } from "formik";
+import { Formik, Form } from "formik";
 import { validationSchema } from "./validation-schema";
 import axios from "axios";
 import { ButtonCustom } from "../index";
-import { useHistory } from "react-router-dom";
 import { colors, initialValues } from "../../constants";
-import { axiosHttp } from "../../helpers/axiosHttp";
-import Message from "../message";
+import FormControl from "../form/FormControl";
+import PropTypes from "prop-types";
+import { WrapperSignup, WrapperBottom } from "./styles";
+import Loaders from "../loader";
+import TextError from "../form/text-error/TextError";
 
-import {
-  Content,
-  FormWrapper,
-  InputWrapper,
-  MessageError,
-  Title,
-  TitleInput,
-  WrapperTitle,
-} from "./styles";
-
-const Register = () => {
+const Register = ({ transition, setTransition }) => {
   const [serverError, setServerError] = useState(false);
-  const history = useHistory();
 
   const onSubmit = async (values) => {
     setServerError(false);
-    const { name, email, lastName, age, password } = await values;
+    const { name, email, password } = await values;
     try {
       const data = await axios({
         method: "post",
@@ -32,83 +23,67 @@ const Register = () => {
         data: {
           name,
           email,
-          lastName,
-          age,
           password,
         },
       });
-      if (data.request.status === 201) history.push("/login");
+      if (data.request.status === 201) setTransition(!transition);
     } catch (error) {
       if (error) setServerError(true);
     }
-    formik.resetForm();
   };
-  const formik = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit,
-  });
 
-  const goToLogin = () => history.push("./login");
   return (
-    <Content>
-      <WrapperTitle>
-        <Title>REGISTER</Title>
-        <ButtonCustom values={"Login"} background={colors.BLUE} onClick={goToLogin} />
-      </WrapperTitle>
-      <FormWrapper onSubmit={formik.handleSubmit}>
-        <TitleInput>NAME</TitleInput>
-        <InputWrapper type="text" name="name" id="name" {...formik.getFieldProps("name")} />
-        {formik.touched.name && formik.errors.name ? (
-          <MessageError>{formik.errors.name}</MessageError>
-        ) : null}
-        <TitleInput>LAST NAME</TitleInput>
-        <InputWrapper
-          type="text"
-          name="lastName"
-          id="lastName"
-          {...formik.getFieldProps("lastName")}
-        />
-        {formik.touched.lastName && formik.errors.lastName ? (
-          <MessageError>{formik.errors.lastName}</MessageError>
-        ) : null}
-        <TitleInput>AGE</TitleInput>
-        <InputWrapper type="number" name="age" id="age" {...formik.getFieldProps("age")} />
-        {formik.touched.age && formik.errors.age ? (
-          <MessageError>{formik.errors.age}</MessageError>
-        ) : null}
-        <TitleInput>EMAIL</TitleInput>
-        <InputWrapper type="email" name="email" id="email" {...formik.getFieldProps("email")} />
-        {formik.touched.email && formik.errors.email ? (
-          <MessageError>{formik.errors.email}</MessageError>
-        ) : null}
-        <TitleInput>PASSWORD</TitleInput>
-        <InputWrapper
-          type="password"
-          name="password"
-          id="password"
-          {...formik.getFieldProps("password")}
-        />
-        {formik.touched.password && formik.errors.password ? (
-          <MessageError>{formik.errors.password}</MessageError>
-        ) : null}
-        <TitleInput>CONFIRM PASSWORD</TitleInput>
-        <InputWrapper
-          type="password"
-          name="password"
-          id="password"
-          {...formik.getFieldProps("password")}
-        />
-        {serverError && <Message msg={"used mail please enter another"} color={"red"} />}
-        <ButtonCustom
-          type={"onSubmit"}
-          values={"Register"}
-          background={colors.BLUE}
-          margin={"15px 0 0 0"}
-        />
-      </FormWrapper>
-    </Content>
+    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+      {(formik) => {
+        //  console.log("Formik props", formik);
+        return (
+          <>
+            {formik.isSubmitting ? (
+              <Loaders />
+            ) : (
+              <WrapperSignup className={transition || state ? "" : "active"}>
+                <Form className="form">
+                  <h3>Sign up</h3>
+                  <FormControl control="input" type="name" label="Name" name="name" />
+                  <FormControl control="input" type="email" label="Email" name="email" />
+                  <FormControl control="input" type="password" label="Password" name="password" />
+                  <FormControl
+                    control="input"
+                    type="confirmPassword"
+                    label="Confirm Password"
+                    name="confirmPassword"
+                  />
+                  <WrapperBottom>
+                    {serverError && (
+                      <TextError styles={{ marginBottom: "30px" }}>
+                        <span>Wrong email or password </span>
+                      </TextError>
+                    )}
+
+                    <ButtonCustom
+                      type={"onSubmit"}
+                      values={"Register"}
+                      background={colors.BLUE}
+                      minWidth={"100%"}
+                      disabled={!formik.isValid}
+                    />
+                  </WrapperBottom>
+                </Form>
+              </WrapperSignup>
+            )}
+          </>
+        );
+      }}
+    </Formik>
   );
+};
+Register.propTypes = {
+  transition: PropTypes.string,
+  setTransition: PropTypes.func,
+};
+Register.defaultProps = {
+  transition: "",
+  setTransition: "",
 };
 
 export default Register;

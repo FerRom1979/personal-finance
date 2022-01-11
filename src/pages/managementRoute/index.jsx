@@ -8,6 +8,7 @@ import Welcome from "../welcome";
 import Home from "../home";
 import Upload from "../../components/upload";
 import Header from "../../components/header";
+import RegisterContainer from "../../components/register-conteiner";
 
 const ManagementRoute = () => {
   return (
@@ -17,7 +18,7 @@ const ManagementRoute = () => {
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/home" component={Home} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/login" component={RegisterContainer} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/myAccount" component={MyAccount} />
           <Route exact path="/dashboard" component={Dashboard} />
