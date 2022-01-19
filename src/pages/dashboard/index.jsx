@@ -4,6 +4,7 @@ import { Tablet, Graphic, InputRadio, TableIncomes, Modal, CreateIncome } from "
 import { getTotal, getTotalData } from "../../constants";
 import { getIncomes } from "../../redux/incomes/actions";
 import { useModal } from "../../hooks/useModal";
+import { pencil } from "../../images";
 
 import {
   WrapperSubTitle,
@@ -37,9 +38,21 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
-      <WrapperSubTitle>
+    <div style={{ margin: "auto", width: "100%" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
         <Title>DASHBOARD</Title>
+        <ButtonAdd type="button" onClick={openModal}>
+          <ADDSpan>
+            <img src={pencil} alt="pencil" width="20px" /> Manage accounts{" "}
+          </ADDSpan>
+        </ButtonAdd>
+
+        {/* <ButtonAdd type="button" onClick={openModal}>
+          <ADDSpan>+ADD INCOME</ADDSpan>
+        </ButtonAdd> */}
+      </div>
+
+      <WrapperSubTitle>
         <WrapperInputRadio>
           <InputRadio
             label={"Day"}
@@ -67,13 +80,6 @@ const Dashboard = () => {
             fontSize={30}
           />
         </WrapperInputRadio>
-
-        <Select>
-          <span>{getTotal().toDay.format("ll")}</span>
-        </Select>
-        <ButtonAdd type="button" onClick={openModal}>
-          <ADDSpan>+ADD INCOME</ADDSpan>
-        </ButtonAdd>
       </WrapperSubTitle>
 
       <WrapperData>
@@ -86,11 +92,11 @@ const Dashboard = () => {
         />
 
         <Graphic incomes={totalIncomes} expenses={totalExpenses} />
-        <TableIncomes incomes={incomes.length} />
       </WrapperData>
       <Modal isOpen={isOpenModal} closeModal={closeModal}>
         <CreateIncome closeModal={closeModal} />
       </Modal>
+      <TableIncomes incomes={incomes.length} />
     </div>
   );
 };
