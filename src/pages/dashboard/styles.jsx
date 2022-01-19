@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const WrapperSubTitle = styled.div`
+  width: 100%;
   margin-top: 20px;
   margin-bottom: 30px;
   display: flex;
-  align-items: baseline;
+  align-items: space-around;
+  justify-content: space-around;
 `;
 
 export const Title = styled.h3`
@@ -16,9 +18,7 @@ export const Title = styled.h3`
 export const WrapperInputRadio = styled.div`
   width: 400px;
   display: flex;
-  justify-content: space-around;
-  align-content: center;
-  align-items: center;
+  justify-content: inherit;
 `;
 
 export const Select = styled.div`
@@ -32,7 +32,6 @@ export const Select = styled.div`
 
 export const WrapperData = styled.div`
   width: 100%;
-  margin-top: 80px;
   display: flex;
   justify-content: space-around;
 `;
@@ -56,13 +55,14 @@ export const SubTitle = styled.span`
 export const ButtonAdd = styled.button`
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  border: none;
   border-radius: 5px;
   background-color: transparent;
   cursor: pointer;
   padding-top: 5px;
   padding-bottom: 0;
   margin-left: 20px;
+  margin-right: 20px;
   :hover {
     opacity: 0.5;
   }

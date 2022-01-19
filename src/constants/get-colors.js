@@ -14,7 +14,9 @@ export const getColor = (color) => {
       return "#FFD700";
     case colors.LIGHTBLUE:
       return "#0099FF";
+    case colors.RED:
+      return "#ff5733";
     default:
-      return "red";
+      return "";
   }
 };

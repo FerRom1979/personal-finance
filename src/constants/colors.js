@@ -5,4 +5,5 @@ export const colors = {
   VIOLET: "violet",
   YELLOW: "yellow",
   LIGHTBLUE: "light_blue",
+  RED: "red",
 };

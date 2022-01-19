@@ -10,20 +10,25 @@ import Upload from "../../components/upload";
 import Header from "../../components/header";
 import RegisterContainer from "../../components/register-conteiner";
 
+// styles
+import { Content } from "./styles";
+
 const ManagementRoute = () => {
   return (
     <>
       <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Welcome} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/login" component={RegisterContainer} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/myAccount" component={MyAccount} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Upload exact path="/upload" component={Upload} />
-        </Switch>
+        <Content>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Welcome} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/login" component={RegisterContainer} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/myAccount" component={MyAccount} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Upload exact path="/upload" component={Upload} />
+          </Switch>
+        </Content>
       </Router>
     </>
   );
